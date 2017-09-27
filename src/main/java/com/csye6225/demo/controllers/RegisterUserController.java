@@ -1,3 +1,9 @@
+/**
+ * Amitha_Murali, 001643826, murali.a@husky.neu.edu
+ * Jyoti Sharma, 001643410, sharma.j@husky.neu.edu
+ * Surabhi Patil, 001251860, patil.sur@husky.neu.edu
+ **/
+
 package com.csye6225.demo.controllers;
 
 
@@ -15,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csye6225.demo.User;
 import com.csye6225.demo.UserRepository;
+import com.csye6225.demo.Helper;
 
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="/user") // This means URL's start with /user (after Application path)
@@ -27,6 +34,9 @@ public class RegisterUserController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private Helper helper;
+
     //@GetMapping(path="/register") // Map ONLY GET Requests
    @RequestMapping(value="/register",method=RequestMethod.POST,produces="application/json")
     public @ResponseBody String addNewUser (@RequestParam String name
@@ -34,7 +44,7 @@ public class RegisterUserController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-      // if(userRepository.findEmail(email) == null) {
+       if(helper.validateUserEmail(email) == null) {
            User newUser = new User();
            newUser.setName(name);
            newUser.setEmail(email);   //
@@ -44,10 +54,13 @@ public class RegisterUserController {
            JsonObject jsonObject = new JsonObject();
            jsonObject.addProperty("message", "User has been created successfully.");
            return jsonObject.toString();
-      // }
+      }
 
-
+       JsonObject jsonObject = new JsonObject();
+       jsonObject.addProperty("message", "User already exists.");
+       return jsonObject.toString();
     }
+
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<User> getAllUsers() {
