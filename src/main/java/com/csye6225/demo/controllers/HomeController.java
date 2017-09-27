@@ -12,6 +12,10 @@ import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
+=======
+import org.springframework.http.HttpRequest;
+>>>>>>> upstream/master
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,6 +48,7 @@ public class HomeController {
 
     JsonObject jsonObject = new JsonObject();
 
+<<<<<<< HEAD
 
     /*
     //will contain "Basic Ym9iOnNlY3JldA=="
@@ -74,9 +79,39 @@ public class HomeController {
       jsonObject.addProperty("message", "Invalid credentials.");
     } else {
       jsonObject.addProperty("message", "Hi, you have been successfully logged in. current time is " + new Date().toString());
+=======
+    //if (SecurityContextHolder.getContext().getAuthentication() != null && SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)
+
+   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+
+  if(!(auth instanceof AnonymousAuthenticationToken)) {
+
+    //This is the logic to fetch user password from the authorization header value by removing "Basic" keyword, decoding and splitting with :
+       String header = request.getHeader("Authorization");
+       assert header.substring(0, 6).equals("Basic ");
+       String basicAuthEncoded = header.substring(6);
+       String basicAuthAsString = new String(Base64.getDecoder().decode(basicAuthEncoded.getBytes()));
+
+    if(auth != null) {
+      final String[] credentialValues = basicAuthAsString.split(":", 2);
+      //If user exists in DB , return the user object.
+      User user = helper.validateUser(auth.getName(), credentialValues[1]);
+
+      if (user == null) {
+        jsonObject.addProperty("message", "Invalid credentials.Try again!!!");
+      } else {
+        jsonObject.addProperty("message", "Hi, you have been successfully logged in. current time is " + new Date().toString());
+      }
+>>>>>>> upstream/master
     }
     }
     jsonObject.addProperty("message", "You are not logged in!!!");
+
+   }else
+   {
+        jsonObject.addProperty("message", "You are not logged in!!!");
+   }
 
     return jsonObject.toString();
   }
