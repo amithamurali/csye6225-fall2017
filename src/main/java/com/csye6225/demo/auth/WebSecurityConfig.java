@@ -1,7 +1,15 @@
+/**
+ * Amitha_Murali, 001643826, murali.a@husky.neu.edu
+ * Jyoti Sharma, 001643410, sharma.j@husky.neu.edu
+ * Surabhi Patil, 001251860, patil.sur@husky.neu.edu
+ **/
+
 package com.csye6225.demo.auth;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -44,4 +52,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     manager.createUser(User.withUsername("user").password(bCryptPasswordEncoder.encode("password")).roles("USER").build());
     return manager;
   }
+
+  /*@Bean
+  public DataSource datasource() {
+    org.apache.tomcat.jdbc.pool.DataSource ds = new org.apache.tomcat.jdbc.pool.DataSource();
+
+    ds.setUrl("http://localhost:3306/useraccount");
+    ds.setUsername("springuser");
+    ds.setPassword("cloud");
+
+    return ds;
+  }
+
+ // @Autowired
+  //DataSource dataSource;
+
+  @Autowired
+  public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    auth.jdbcAuthentication().dataSource(datasource())
+            .usersByUsernameQuery("select email,password from user where email=?");
+  }*/
+
 }
