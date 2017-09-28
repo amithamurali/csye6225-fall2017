@@ -84,6 +84,32 @@ public class HomeController {
    }
 
     return jsonObject.toString();
+
+ /*String auth = request.getHeader("Authorization");
+ if(auth!=null && auth.startsWith("Basic"))
+ {
+     String header = request.getHeader("Authorization");
+     assert header.substring(0, 6).equals("Basic ");
+     String basicAuthEncoded = header.substring(6);
+     String basicAuthAsString = new String(Base64.getDecoder().decode(basicAuthEncoded.getBytes()));
+     final String[] credentialValues = basicAuthAsString.split(":", 2);
+     //If user exists in DB , return the user object.
+     User user = helper.validateUser(credentialValues[0], credentialValues[1]);
+
+     if(user!= null) {
+         jsonObject.addProperty("message", "Hi, you have been successfully logged in. current time is " + new Date().toString());
+     }
+     else {
+         jsonObject.addProperty("message", "You are not logged in!!!");
+     }
+
+ }
+ else
+ {
+     jsonObject.addProperty("message", "You are not logged in!!!");
+ }
+
+ return jsonObject.toString();*/
   }
 
   @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
