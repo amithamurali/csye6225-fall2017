@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf()
         .disable()
         .authorizeRequests()
-        .antMatchers("/").permitAll()
+        .antMatchers("/","/user/register").permitAll()
         .anyRequest().authenticated()
         .and()
         .httpBasic()
@@ -46,31 +46,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return new HeaderHttpSessionStrategy();
   }
 
-  @Bean
+  /*@Bean
   public UserDetailsService userDetailsService() {
     InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
     manager.createUser(User.withUsername("user").password(bCryptPasswordEncoder.encode("password")).roles("USER").build());
     return manager;
-  }
+  }*/
 
-  /*@Bean
-  public DataSource datasource() {
-    org.apache.tomcat.jdbc.pool.DataSource ds = new org.apache.tomcat.jdbc.pool.DataSource();
-
-    ds.setUrl("http://localhost:3306/useraccount");
-    ds.setUsername("springuser");
-    ds.setPassword("cloud");
-
-    return ds;
-  }
-
- // @Autowired
-  //DataSource dataSource;
+  @Autowired
+  DataSource dataSource;
 
   @Autowired
   public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-    auth.jdbcAuthentication().dataSource(datasource())
+    auth.jdbcAuthentication().dataSource(dataSource)
             .usersByUsernameQuery("select email,password from user where email=?");
-  }*/
+  }
 
 }
