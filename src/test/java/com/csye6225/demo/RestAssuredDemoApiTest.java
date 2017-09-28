@@ -4,16 +4,18 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.Ignore;
 import org.junit.Test;
+
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import static org.junit.Assert.assertEquals;
+
 //import com.jayway.restassured.RestAssured.given;
 //import org.hamcrest.Matchers;
 
 public class RestAssuredDemoApiTest {
 
-
-  @Ignore
+@Ignore
   @Test
   public void testHomePage() throws URISyntaxException {
     RestAssured
@@ -53,14 +55,13 @@ public class RestAssuredDemoApiTest {
               .statusCode(200);
   }
 
+
   //Dummy testing
   @Test
   public void test()
   {
-      assertEquals(true,true);
+    assertEquals(true,true);
   }
-
-
 
   /*
   @Test

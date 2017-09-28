@@ -38,10 +38,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .disable()
         .authorizeRequests()
         .antMatchers("/","/user/register").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .httpBasic()
-        .authenticationEntryPoint(basicAuthEntryPoint);
+        .anyRequest().authenticated();
+//        .and()
+//        .httpBasic()
+//        .authenticationEntryPoint(basicAuthEntryPoint);
   }
 
   @Bean

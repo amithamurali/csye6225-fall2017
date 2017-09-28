@@ -36,7 +36,7 @@ public class Helper {
     {
         for(User user:userRepository.findAll())
         {
-            if((user.getEmail().equals(email)) && (bCryptPasswordEncoder.matches(password,user.getPassword())))
+            if((user.getEmail().equals(email)) && (bCryptPasswordEncoder.matches(password,user.getPassword())|| user.getPassword().equals(password)) )
                 return user;
 
         }

@@ -51,18 +51,20 @@ public class HomeController {
    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 
-  if(!(auth instanceof AnonymousAuthenticationToken)) {
+  //if(!(auth instanceof AnonymousAuthenticationToken)) {
 
     //This is the logic to fetch user password from the authorization header value by removing "Basic" keyword, decoding and splitting with :
        String header = request.getHeader("Authorization");
-       assert header.substring(0, 6).equals("Basic ");
+       if(header !=null && header.contains("Basic"))
+       {
+       assert header.substring(0, 6).equals("Basic");
        String basicAuthEncoded = header.substring(6);
        String basicAuthAsString = new String(Base64.getDecoder().decode(basicAuthEncoded.getBytes()));
 
-    if(auth != null) {
+
       final String[] credentialValues = basicAuthAsString.split(":", 2);
       //If user exists in DB , return the user object.
-      User user = helper.validateUser(auth.getName(), credentialValues[1]);
+      User user = helper.validateUser(credentialValues[0], credentialValues[1]);
 
       if (user == null) {
         jsonObject.addProperty("message", "Invalid credentials.Try again!!!");
@@ -71,7 +73,7 @@ public class HomeController {
       }
     }
 
-   }else
+   else
    {
         jsonObject.addProperty("message", "You are not logged in!!!");
    }
