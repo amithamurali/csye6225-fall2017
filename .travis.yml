@@ -7,11 +7,10 @@ install: true
 
 script:
   - ./gradlew war
-  - ./gradlew test
 
 notifications:
   email:
     recipients:
       - murali.a@husky.neu.edu
-      - patil.sur@husky.neu.edu
-      - sharma.j@husky.neu.edu
+      -patil.sur@husky.neu.edu
+      -sharma.j@husky.neu.edu
