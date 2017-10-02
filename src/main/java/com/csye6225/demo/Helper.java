@@ -3,7 +3,13 @@ package com.csye6225.demo;
 import com.csye6225.demo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+>>>>>>> 146dc1cef02c29a0c0e32f34331f296f81540df4
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 >>>>>>> upstream/master
 import org.springframework.stereotype.Service;
@@ -40,13 +46,19 @@ public class Helper {
         for(User user:userRepository.findAll())
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if((user.getEmail().equals(email)) && (user.getPassword().equals(password)))
 =======
             if((user.getEmail().equals(email)) && (bCryptPasswordEncoder.matches(password,user.getPassword())))
 >>>>>>> upstream/master
+=======
+            if((user.getEmail().equals(email)) && (bCryptPasswordEncoder.matches(password,user.getPassword())|| user.getPassword().equals(password)) )
+>>>>>>> 146dc1cef02c29a0c0e32f34331f296f81540df4
                 return user;
 
         }
         return null;
     }
+
+
 }

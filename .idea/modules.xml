@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/csye6225-fall2017-1.iml" filepath="$PROJECT_DIR$/csye6225-fall2017-1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_main.iml" filepath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_main.iml" group="csye6225-fall2017-1" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_test.iml" filepath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_test.iml" group="csye6225-fall2017-1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/csyeGit-csye6225-fall2017-1.iml" filepath="$PROJECT_DIR$/.idea/modules/csyeGit-csye6225-fall2017-1.iml" />
     </modules>
   </component>
 </project>

@@ -15,4 +15,5 @@ import com.csye6225.demo.User;
 public interface UserRepository extends CrudRepository<User, Long> {
 
 
+
 }

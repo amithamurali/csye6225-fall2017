@@ -26,7 +26,12 @@ import com.csye6225.demo.Helper;
 =======
 
 import javax.annotation.security.RolesAllowed;
+<<<<<<< HEAD
 >>>>>>> upstream/master
+=======
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+>>>>>>> 146dc1cef02c29a0c0e32f34331f296f81540df4
 
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="/user") // This means URL's start with /user (after Application path)
@@ -48,27 +53,32 @@ public class RegisterUserController {
     private Helper helper;
 
     //@GetMapping(path="/register") // Map ONLY GET Requests
-   @RequestMapping(value="/register",method=RequestMethod.POST,produces="application/json")
-    public @ResponseBody String addNewUser (@RequestParam String name
-            , @RequestParam String email, @RequestParam String password) {
+    @RequestMapping(value="/register",method=RequestMethod.POST,produces="application/json")
+    public @ResponseBody String addNewUser (HttpServletRequest request, HttpServletResponse response){
+        //@RequestParam String email, @RequestParam String password) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-       if(helper.validateUserEmail(email) == null) {
-           User newUser = new User();
-           newUser.setName(name);
-           newUser.setEmail(email);   //
-           newUser.setPassword(bCryptPasswordEncoder.encode(password));
-           userRepository.save(newUser);
+        if(helper.validateUserEmail(email) == null) {
+            User newUser = new User();
+            //newUser.setName(name);
+            newUser.setEmail(email);   //
+            newUser.setPassword(bCryptPasswordEncoder.encode(password));
+            userRepository.save(newUser);
 
-           JsonObject jsonObject = new JsonObject();
-           jsonObject.addProperty("message", "User has been created successfully.");
-           return jsonObject.toString();
-      }
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("message", "User has been created successfully.");
+            //jsonObject.addProperty("name",newUser.getName());
+            jsonObject.addProperty("email",newUser.getEmail());
+            jsonObject.addProperty("password",newUser.getPassword());
+            return jsonObject.toString();
+        }
 
-       JsonObject jsonObject = new JsonObject();
-       jsonObject.addProperty("message", "User already exists.");
-       return jsonObject.toString();
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("message", "User already exists.");
+        return jsonObject.toString();
     }
 
 

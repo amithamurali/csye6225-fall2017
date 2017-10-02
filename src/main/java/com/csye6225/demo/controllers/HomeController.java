@@ -9,13 +9,18 @@ package com.csye6225.demo.controllers;
 import com.csye6225.demo.Helper;
 import com.csye6225.demo.UserRepository;
 import com.google.gson.JsonObject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import org.springframework.http.HttpRequest;
 >>>>>>> upstream/master
+=======
+
+>>>>>>> 146dc1cef02c29a0c0e32f34331f296f81540df4
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -85,18 +90,20 @@ public class HomeController {
    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 
-  if(!(auth instanceof AnonymousAuthenticationToken)) {
+  //if(!(auth instanceof AnonymousAuthenticationToken)) {
 
     //This is the logic to fetch user password from the authorization header value by removing "Basic" keyword, decoding and splitting with :
        String header = request.getHeader("Authorization");
-       assert header.substring(0, 6).equals("Basic ");
+       if(header !=null && header.contains("Basic"))
+       {
+       assert header.substring(0, 6).equals("Basic");
        String basicAuthEncoded = header.substring(6);
        String basicAuthAsString = new String(Base64.getDecoder().decode(basicAuthEncoded.getBytes()));
 
-    if(auth != null) {
+
       final String[] credentialValues = basicAuthAsString.split(":", 2);
       //If user exists in DB , return the user object.
-      User user = helper.validateUser(auth.getName(), credentialValues[1]);
+      User user = helper.validateUser(credentialValues[0], credentialValues[1]);
 
       if (user == null) {
         jsonObject.addProperty("message", "Invalid credentials.Try again!!!");
@@ -108,12 +115,38 @@ public class HomeController {
     }
     jsonObject.addProperty("message", "You are not logged in!!!");
 
-   }else
+   else
    {
         jsonObject.addProperty("message", "You are not logged in!!!");
    }
 
     return jsonObject.toString();
+
+ /*String auth = request.getHeader("Authorization");
+ if(auth!=null && auth.startsWith("Basic"))
+ {
+     String header = request.getHeader("Authorization");
+     assert header.substring(0, 6).equals("Basic ");
+     String basicAuthEncoded = header.substring(6);
+     String basicAuthAsString = new String(Base64.getDecoder().decode(basicAuthEncoded.getBytes()));
+     final String[] credentialValues = basicAuthAsString.split(":", 2);
+     //If user exists in DB , return the user object.
+     User user = helper.validateUser(credentialValues[0], credentialValues[1]);
+
+     if(user!= null) {
+         jsonObject.addProperty("message", "Hi, you have been successfully logged in. current time is " + new Date().toString());
+     }
+     else {
+         jsonObject.addProperty("message", "You are not logged in!!!");
+     }
+
+ }
+ else
+ {
+     jsonObject.addProperty("message", "You are not logged in!!!");
+ }
+
+ return jsonObject.toString();*/
   }
 
   @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")

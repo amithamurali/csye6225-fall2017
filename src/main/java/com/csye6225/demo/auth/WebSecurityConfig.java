@@ -6,9 +6,11 @@
 
 package com.csye6225.demo.auth;
 
+import com.csye6225.demo.Helper;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
@@ -34,11 +37,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf()
         .disable()
         .authorizeRequests()
-        .antMatchers("/").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .httpBasic()
-        .authenticationEntryPoint(basicAuthEntryPoint);
+        .antMatchers("/","/user/register").permitAll()
+        .anyRequest().authenticated();
+//        .and()
+//        .httpBasic()
+//        .authenticationEntryPoint(basicAuthEntryPoint);
   }
 
   @Bean
@@ -53,24 +56,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return manager;
   }
 
-  /*@Bean
-  public DataSource datasource() {
-    org.apache.tomcat.jdbc.pool.DataSource ds = new org.apache.tomcat.jdbc.pool.DataSource();
 
-    ds.setUrl("http://localhost:3306/useraccount");
-    ds.setUsername("springuser");
-    ds.setPassword("cloud");
-
-    return ds;
-  }
-
- // @Autowired
-  //DataSource dataSource;
+ /*@Autowired
+  DataSource dataSource;
 
   @Autowired
   public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-    auth.jdbcAuthentication().dataSource(datasource())
+    auth.jdbcAuthentication().dataSource(dataSource)
             .usersByUsernameQuery("select email,password from user where email=?");
+           // .authoritiesByUsernameQuery("select username,role from userroles where username=?");
   }*/
+
+
 
 }
