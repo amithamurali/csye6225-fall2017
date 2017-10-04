@@ -53,8 +53,4 @@ echo $PUB_IP
 
 echo "Creating a Record Set"
 
-aws route53 change-resource-record-sets --hosted-zone-id Z2DH59WEOS3S7Z --change-batch file:///home/jyoti/csyeGit/Assignment4/jsoncreaterecordset.json
-
-
-# Deleting Your Security Group
-# aws ec2 delete-security-group --group-id $SG_NAME
+aws route53 change-resource-record-sets --hosted-zone-id Z2DH59WEOS3S7Z --change-batch file://./jsoncreaterecordset.json

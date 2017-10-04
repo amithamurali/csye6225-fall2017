@@ -1,6 +1,6 @@
 echo "Deleting a Record Set"
 
-aws route53 change-resource-record-sets --hosted-zone-id Z2DH59WEOS3S7Z --change-batch file:///home/jyoti/csyeGit/Assignment4/jsondeleterecordset.json
+aws route53 change-resource-record-sets --hosted-zone-id Z2DH59WEOS3S7Z --change-batch file://./jsondeleterecordset.json
 
 echo "Terminating ec2 instance"
 
@@ -14,4 +14,4 @@ sleep 15s
 
 echo "Deleting Security Group"
 # Deleting Your Security Group
-aws ec2 delete-security-group --group-name test1-sg
+aws ec2 delete-security-group --group-name csye6225-fall2017-webapp
