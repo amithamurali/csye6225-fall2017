@@ -6,7 +6,7 @@
             "Type": "AWS::EC2::Instance",
             "Properties": {
 				"KeyName" : "ec2try",
-                "ImageId": "ami-6e1a0117",
+                "ImageId": "ami-cd0f5cb6",
                 "InstanceType": "t2.micro",
                 "SecurityGroupIds": [
                     {
@@ -22,7 +22,7 @@
                 "DeviceName" : "/dev/sda1",
                 "Ebs" : { 
                           "DeleteOnTermination": true,
-                          "SnapshotId": "snap-02cc1e40d2e121683",
+                          "SnapshotId": "snap-0cfc17b071e696816",
                           "VolumeSize": 16,
                           "VolumeType": "gp2"
                         } 
@@ -33,9 +33,9 @@
 		"ResourceRecordSet" : {
 		"Type" : "AWS::Route53::RecordSet",
 		"Properties" : {
-        "HostedZoneId" : "Z2DH59WEOS3S7Z",
+        "HostedZoneId" : "Z1V8ZHS4H3Z5H7",
         "Comment" : "DNS name for my instance.",
-        "Name" : "ec2.csye6225-fall2017-sharmaj.me",
+        "Name" : "ec2.csye6225-fall2017-patilsur.me",
         "Type" : "A",
         "TTL" : "60",
         "ResourceRecords" : [ { "Fn::GetAtt" : [ "EC2Instance", "PublicIp" ] } ]
@@ -46,7 +46,7 @@
             "Properties": {
 				"GroupName" : "csye6225-fall2017-STACK_NAME-webapp",
                 "GroupDescription": "Enable HTTP access via port 80, SSH access via port 22, HTTPS access via port 443",
-                "VpcId": "vpc-c2e79ca5",
+                "VpcId": "vpc-56fd1a2e",
                 "SecurityGroupIngress": [
                     {
                         "IpProtocol": "tcp",

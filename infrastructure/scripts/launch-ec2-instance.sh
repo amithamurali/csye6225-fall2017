@@ -34,17 +34,20 @@ aws ec2 authorize-security-group-ingress --group-id $SG_NAME --protocol tcp --po
 
 echo "Creating the EC2 instance"
 
-INSTANCE_ID = $(aws ec2 run-instances --image-id ami-6e1a0117 --security-group-ids $SG_NAME --count 1 --instance-type t2.micro --key-name ec2try --region us-west-2 --query 'Instances[0].InstanceId' --block-device-mappings "[{
+INSTANCE_ID = $(aws ec2 run-instances --image-id ami-cd0f5cb6 --security-group-ids $SG_NAME --count 1 --instance-type t2.micro --key-name aws-key-pair --region us-east-1 --query 'Instances[0].InstanceId' --block-device-mappings "[{
    \"DeviceName\": \"/dev/sda1\",
     \"Ebs\": {
-      \"DeleteOnTermination\": true,
-      \"SnapshotId\": \"snap-02cc1e40d2e121683\",
+      \"DeleteOnTermination\": false,
+      \"SnapshotId\": \"snap-0cfc17b071e696816\",
       \"VolumeSize\": 16,
       \"VolumeType\": \"gp2\"
     }
   }]")
 
 echo $INSTANCE_ID
+
+#Enable the protection against termination.
+aws ec2 modify-instance-attribute --instance-id $INSTANCE_ID --disable-api-termination
 
 echo "Retrieving public IP of the instance"
 
@@ -53,4 +56,4 @@ echo $PUB_IP
 
 echo "Creating a Record Set"
 
-aws route53 change-resource-record-sets --hosted-zone-id Z2DH59WEOS3S7Z --change-batch file://./jsoncreaterecordset.json
+aws route53 change-resource-record-sets --hosted-zone-id Z1V8ZHS4H3Z5H7 --change-batch "{\"Comment\": \"DNS name for my instance.\", \"Changes\":[{\"Action\": \"CREATE\", \"ResourceRecordSet\": { \"Name\": \"ec2.csye6225-fall2017-patilsur.me\", \"Type\": \"A\", \"TTL\": 60, \"ResourceRecords\": [{\"Value\": \""$PUB_IP"\"}]}}]}"
