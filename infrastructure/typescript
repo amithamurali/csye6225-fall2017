@@ -1,41 +1,0 @@
-Script started on Wed 04 Oct 2017 04:02:55 PM EDT
-]0;jyoti@jyoti-VirtualBox: ~/csyeGit/csye6225-fall2017-1/infrastructure[01;32mjyoti@jyoti-VirtualBox[00m:[01;34m~/csyeGit/csye6225-fall2017-1/infrastructure[00m$ cds[K sx[Kcq[Kripts/ [A
-]0;jyoti@jyoti-VirtualBox: ~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[01;32mjyoti@jyoti-VirtualBox[00m:[01;34m~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[00m$ cd sscripts/[A]0;jyoti@jyoti-VirtualBox: ~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[01;32mjyoti@jyoti-VirtualBox[00m:[01;34m~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[00m$ sh
-delete-csye6225-cloudformation-stack.sh demoInsecureSG1[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C  launch-ec2-instance.sh 
-Creating a security group for EC2 instance
-vpc-c2e79ca5
-sg-cc943fb1
-SECURITYGROUPS	Security group for csye6225-fall2017-webapp	sg-cc943fb1	csye6225-fall2017-webapp	182802895791	vpc-c2e79ca5
-IPPERMISSIONSEGRESS	-1
-IPRANGES	0.0.0.0/0
-Adding Rules to the security group
-Creating the EC2 instance
-launch-ec2-instance.sh: 37: launch-ec2-instance.sh: INSTANCE_ID: not found
-
-Retrieving public IP of the instance
-35.162.179.199
-Creating a Record Set
-CHANGEINFO	A new record set for the zone.	/change/C2ROMTQURL13SQ	PENDING	2017-10-04T20:03:43.789Z
-]0;jyoti@jyoti-VirtualBox: ~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[01;32mjyoti@jyoti-VirtualBox[00m:[01;34m~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[00m$ sh llaunch-ec2-instance.sh [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C  terminate-ec2-instance.sh i-0fda0d6187d03e364
-Deleting a Record Set
-CHANGEINFO	A new record set for the zone.	/change/C2RP5179MLTLHW	PENDING	2017-10-04T20:08:54.955Z
-Terminating ec2 instance
-TERMINATINGINSTANCES	i-0fda0d6187d03e364
-CURRENTSTATE	32	shutting-down
-PREVIOUSSTATE	16	running
-Deleting Security Group
-
-An error occurred (InvalidGroup.NotFound) when calling the DeleteSecurityGroup operation: The security group 'test1-sg' does not exist in default VPC 'vpc-c2e79ca5'
-]0;jyoti@jyoti-VirtualBox: ~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[01;32mjyoti@jyoti-VirtualBox[00m:[01;34m~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[00m$ sh tterminate-ec2-instance.sh i-0fda0d6187d03e364
-Deleting a Record Set
-
-An error occurred (InvalidChangeBatch) when calling the ChangeResourceRecordSets operation: Tried to delete resource record set [name='ec2.csye6225-fall2017-sharmaj.me.', type='A'] but it was not found
-Terminating ec2 instance
-TERMINATINGINSTANCES	i-0fda0d6187d03e364
-CURRENTSTATE	48	terminated
-PREVIOUSSTATE	48	terminated
-Deleting Security Group
-]0;jyoti@jyoti-VirtualBox: ~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[01;32mjyoti@jyoti-VirtualBox[00m:[01;34m~/csyeGit/csye6225-fall2017-1/infrastructure/scripts[00m$ cd  ..
-]0;jyoti@jyoti-V
