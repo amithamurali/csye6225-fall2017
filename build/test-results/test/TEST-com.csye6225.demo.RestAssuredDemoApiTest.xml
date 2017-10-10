@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.csye6225.demo.RestAssuredDemoApiTest" tests="4" skipped="3" failures="0" errors="0" timestamp="2017-10-08T21:08:57" hostname="jyoti-VirtualBox" time="0.027">
+  <properties/>
+  <testcase name="testHomePageLoggedIn" classname="com.csye6225.demo.RestAssuredDemoApiTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testRegisterUser" classname="com.csye6225.demo.RestAssuredDemoApiTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="test" classname="com.csye6225.demo.RestAssuredDemoApiTest" time="0.018"/>
+  <testcase name="testHomePage" classname="com.csye6225.demo.RestAssuredDemoApiTest" time="0.001">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
