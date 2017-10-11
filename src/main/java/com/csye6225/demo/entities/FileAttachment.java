@@ -17,15 +17,15 @@ public class FileAttachment {
 
     private String path;
 
-    private int taskId;
+    private long taskId;
 
     private int userId;
 
-    public int getTaskId() {
+    public long getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(int taskId) {
+    public void setTaskId(long taskId) {
         this.taskId = taskId;
     }
 

@@ -55,11 +55,22 @@ public class Helper {
         return null;
     }
 
-    public ArrayList<String> getFileList(int taskId){
+    public ArrayList<String> getFileList(long taskId){
         ArrayList<String> fileList = new ArrayList<>();
         for (FileAttachment file : fileAttachmentRepository.findAll()) {
             if(file.getTaskId() == taskId){
                 fileList.add( file.getPath() );
+            }
+
+        }
+        return fileList;
+    }
+
+    public ArrayList<Long> getFileIDs(long taskId){
+        ArrayList<Long> fileList = new ArrayList<>();
+        for (FileAttachment file : fileAttachmentRepository.findAll()) {
+            if(file.getTaskId() == taskId){
+                fileList.add( file.getId() );
             }
 
         }
