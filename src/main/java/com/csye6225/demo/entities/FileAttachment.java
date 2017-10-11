@@ -15,8 +15,7 @@ public class FileAttachment {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(4096)")
-    private String description;
+    private String path;
 
     private int taskId;
 
@@ -38,12 +37,12 @@ public class FileAttachment {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPath() {
+        return path;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public int getUserId() {
