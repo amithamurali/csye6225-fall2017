@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Component
-public class                                                         BasicAuthEntryPoint extends BasicAuthenticationEntryPoint {
+public class BasicAuthEntryPoint extends BasicAuthenticationEntryPoint {
 
   @Override
   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authEx) throws IOException, ServletException {
