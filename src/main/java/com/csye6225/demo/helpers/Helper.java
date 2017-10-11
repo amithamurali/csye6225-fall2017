@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
+
 @Service
 public class Helper {
 
@@ -47,5 +49,25 @@ public class Helper {
         return null;
     }
 
+    public int GetUserDetails(String header) {
+        //This is the logic to fetch user password from the authorization header value by removing "Basic" keyword, decoding and splitting with :
 
+        if (header != null && header.contains("Basic")) {
+            assert header.substring(0, 6).equals("Basic");
+            String basicAuthEncoded = header.substring(6);
+            String basicAuthAsString = new String(Base64.getDecoder().decode(basicAuthEncoded.getBytes()));
+
+
+            final String[] credentialValues = basicAuthAsString.split(":", 2);
+            //If user exists in DB , return the user object.
+            User user = validateUser(credentialValues[0], credentialValues[1]);
+            if(user != null) {
+                return user.getId();
+            }
+        }
+
+        return -1;
+
+
+    }
 }

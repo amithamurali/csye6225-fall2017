@@ -9,8 +9,13 @@ package com.csye6225.demo.dao;
 import com.csye6225.demo.entities.Task;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.UUID;
+
 // This will be AUTO IMPLEMENTED by Spring into a Bean called TaskRepository
 // CRUD refers Create, Read, Update, Delete
 
 public interface TaskRepository extends CrudRepository<Task, Long> {
+
+    //void delete(UUID id);
+
 }
