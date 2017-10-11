@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -184,13 +183,44 @@ public class FileAttachmentController {
     }
 
     @RequestMapping(value="/tasks/{id}/attachments/{idAttachments}",method= RequestMethod.DELETE,produces="application/json")
-    public @ResponseBody String deleteFile (@PathParam("id")String id) {
+    public @ResponseBody String deleteFile (HttpServletRequest request) {
 
         JsonObject jsonObject = new JsonObject();
 
         //Write delete file code here
 
-        jsonObject.addProperty("message", "sample.");
+        String header = request.getHeader("Authorization");
+        int taskId = Integer.parseInt(request.getRequestURI().split("/")[2]);
+        Long fileAttachmentId = Long.parseLong( request.getRequestURI().split( "/" )[4] );
+        if(header != null) {
+
+            int userID = helper.GetUserDetails(header);
+
+            if(userID > -1) {
+
+                if(taskId > 0) {
+                    if(fileAttachmentId > 0) {
+
+                       FileAttachment file = fileAttachmentRepository.findOne(fileAttachmentId ) ;
+                       if(file != null){
+                           if(file.getTaskId() == taskId){
+                               if(file.getUserId() == userID){
+                                   fileAttachmentRepository.delete( file );
+                                   jsonObject.addProperty( "message", "File has been deleted successfully for the User task." );
+                                   return jsonObject.toString();
+                               }
+                           }
+                       }
+
+                    }
+                    jsonObject.addProperty("message", "Invalid file Id.");
+                    return jsonObject.toString();
+                }
+                jsonObject.addProperty("message", "Invalid Task Id.");
+                return jsonObject.toString();
+            }
+        }
+        jsonObject.addProperty("message", "Error Occurred.");
         return jsonObject.toString();
 
     }
