@@ -75,10 +75,49 @@
    		"Properties": {
       			"EC2VpcId" : [ { "Fn::GetAtt" : [ "EC2Instance", "VpcId" ] } ],
       			"DBSecurityGroupIngress": [
-        			 {"EC2SecurityGroupName": { "Ref": "csye6225webapp"}}
+        		{"EC2SecurityGroupName": { "Ref": "csye6225webapp"}},
+			{
+                        "IpProtocol": "tcp",
+                        "FromPort": "3306",
+                        "ToPort": "3306",
+                        "CidrIp": "0.0.0.0/0"
+                    	}
      						 ],
-     			 "GroupDescription": "Frontend Access"
+     			"GroupDescription": "Frontend Access"
    				}
-			}
+			},
+
+	"DynamoDBTable" :{
+	"Type": "AWS::DynamoDB::Table",
+	"Properties" : {
+	"AttributeDefinitions" : [
+          {
+            "AttributeName" : "id",
+            "AttributeType" : "String"   
+          },
+          {
+            "AttributeName" : "Name",
+            "AttributeType" : "String"
+          },
+	  {
+            "AttributeName" : "email",
+            "AttributeType" : "Sting"   
+          },
+          {
+            "AttributeName" : "Password",
+            "AttributeType" : "HASH"
+          },
+          {
+            "AttributeName" : "File Path",
+            "AttributeType" : "String"
+          },
+        ],
+	"KeySchema" : [
+          {
+            "AttributeName" : "id",
+            "KeyType" : "String"
+          }],
+	"TableName" : "csye6225"
+}
     }
 }
