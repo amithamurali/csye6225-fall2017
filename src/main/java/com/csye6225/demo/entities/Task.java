@@ -5,23 +5,27 @@ package com.csye6225.demo.entities;
  * Surabhi Patil, 001251860, patil.sur@husky.neu.edu
  **/
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Task {
     @Id
-    private UUID id;
+    private long id;
 
     @Column(columnDefinition = "VARCHAR(4096)")
     private String description;
 
     private int userId;
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
-    public void setId(){ this.id= UUID.randomUUID();  }
+    public void setId(){
+        //  this.id= UUID.randomUUID().getMostSignificantBits();}
+        this.id = generateUniqueId(); }
 
     public String getDescription() {
         return description;
@@ -39,4 +43,13 @@ public class Task {
         this.userId = userId;
     }
 
-  }
+    private Long generateUniqueId()
+    {
+        long val = -1;
+        do
+        {
+            val = UUID.randomUUID().getMostSignificantBits();
+        } while (val < 0);
+        return val;
+    }
+}
