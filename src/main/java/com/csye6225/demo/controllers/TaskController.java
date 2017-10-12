@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.ArrayList;
 
 @Controller    // This means that this class is a Controller
@@ -155,6 +156,13 @@ public class TaskController {
                             FileAttachment file = fileAttachmentRepository.findOne(id ) ;
                             if(file != null) {
                                 fileAttachmentRepository.delete( file );
+                                File fileInFolder = new File(file.getPath());
+                                if(fileInFolder.delete()){
+                                    jsonObject.addProperty( "message", "File has been deleted successfully from the folder structure." );
+                                    System.out.println(fileInFolder.getName() + " is deleted!");
+                                }else{
+                                    System.out.println("Delete operation from the folder structure has failed.");
+                                }
                             }
 
                         }
