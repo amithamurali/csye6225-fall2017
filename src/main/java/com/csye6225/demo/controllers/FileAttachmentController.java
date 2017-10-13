@@ -225,6 +225,13 @@ public class FileAttachmentController {
                            if (file.getTaskId() == taskId) {
                                if (file.getUserId() == userID) {
                                    fileAttachmentRepository.delete( file );
+                                   File fileInFolder = new File(file.getPath());
+                                   if(fileInFolder.delete()){
+                                       jsonObject.addProperty( "message", "File has been deleted successfully from the folder structure." );
+                                       System.out.println(fileInFolder.getName() + " is deleted!");
+                                   }else{
+                                       System.out.println("Delete operation from the folder structure has failed.");
+                                   }
                                    jsonObject.addProperty( "message", "File has been deleted successfully for the User task." );
                                    return jsonObject.toString();
                                } else {
