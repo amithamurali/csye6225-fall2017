@@ -1,25 +1,40 @@
-# Make Unauthenticated HTTP Request
+Team member information such as Name and Email address.
 
-Execute following command on your bash shell
-``` bash
-$ curl http://localhost:8080
-```
+Amitha_Murali, 001643826, murali.a@husky.neu.edu
+Jyoti Sharma, 001643410, sharma.j@husky.neu.edu
+Surabhi Patil, 001251860, patil.sur@husky.neu.edu
 
-## Expected Response:
-```
-{"message":"you are not logged in!!!"}
-```
+Prerequisites for building and deploying your application locally.
 
-# Authenticate for HTTP Request
+* Linux environment
+* Java 8
+* IntelliJ
+* Gradle 
+* Apache Tomcat 8.5.20
+* Jmeter for functional and load test
 
-Execute following command on your bash shell
-``` bash
-$ curl -u user:password http://localhost:8080
-```
+Build and Deploy instructions for web application.
 
-where *user* is the username and *password* is the password.
+* Open code in IntelliJ
+* Setup Tomcat Local configuration and add war file to the deployment configuration
+* Build War file
+* Run the project
+* Use either command line (Terminal) or Postman to test the endpoints.
+ In terminal: 1) $ curl http://localhost:8080
+			  2) $ curl -u user:password http://localhost:8080
 
-## Expected Response:
- ```
- {"message":"you are logged in. current time is Tue Sep 19 20:03:49 EDT 2017"}
- ```
+Instructions to run unit, integration and/or load tests.
+ ## To run the unit tests (created using Rest Assured framework) locally
+ * Prereq: Application should be up and running.
+ * Right click the test folder under the project src folder and select "Run all tests with coverage".
+
+## Jmeter tests
+* Create a test plan
+* Add thread group
+* Set the no of thread and user to 100
+* Add HTTP requests in the thread group
+* Run the test
+
+Link to TravisCI build for the project.
+
+* https://travis-ci.com/amithamurali/csye6225-fall2017
