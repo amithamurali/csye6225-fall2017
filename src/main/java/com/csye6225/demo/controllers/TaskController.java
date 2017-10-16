@@ -49,7 +49,8 @@ public class TaskController {
             String header = request.getHeader("Authorization");
             if (header != null) {
 
-                int userID = helper.GetUserDetails(header);
+                int userID;
+                userID = helper.GetUserDetails(header);
 
                 if (userID > -1) {
                     Task userTask = new Task();
