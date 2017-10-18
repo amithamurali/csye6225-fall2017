@@ -1,6 +1,66 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "Sample CloudFormation Template for CSYE 6225 - Fall 2017",
+
+ 	"Parameters": {
+			"imageId": {
+				"Description": "imageId",
+				"Type": "String"
+			},
+			"vpcId": {
+				"Description": "vpcId",
+				"Type": "String"
+			},
+			"InstType": {
+				"Description": "Instance type",
+				"Type": "String"
+	
+			},
+			"volumeSize": {
+				"Description": "Volume size",
+				"Type": "String"
+				
+			},
+			"volumeType": {
+				"Description": "Volume type",
+				"Type": "String"
+	
+			},
+			"keyName": {
+				"Description": "keyName",
+				"Type": "AWS::EC2::KeyPair::KeyName"
+				
+			},
+			"hostedZoneId": {
+				"Description": "Hosted Zone Id",
+				"Type": "String"
+				
+			},
+			"dnsName": {
+				"Description": "DNS name",
+				"Type": "String"
+				
+			},
+			"recordSetType": {
+				"Description": "Record set type",
+				"Type": "String"
+				
+			},
+			"snapshotId": {
+				"Description": "snapshotId",
+				"Type": "String"
+				
+			},
+			"recordSetTTL": {
+				"Description": "Record set time to live",
+				"Type": "String"
+				
+			}
+
+
+},
+
+
     "Resources": {
 
         "EC2Instance": {
@@ -39,7 +99,7 @@
         "Comment" : "DNS name for my instance.",
         "Name" : {"Ref": "dnsName"},
         "Type" : {"Ref": "recordSetType"},
-        "TTL" : {"Ref": "recordSetTTl"},
+        "TTL" : {"Ref": "recordSetTTL"},
         "ResourceRecords" : [ { "Fn::GetAtt" : [ "EC2Instance", "PublicIp" ] } ]
 		}
 		},
@@ -48,8 +108,8 @@
          "Type" : "AWS::EC2::Subnet",
          "Properties" : {
             "VpcId" : {"Ref": "vpcId"},
-            "CidrBlock" : "10.0.0.0/24",
-            "AvailabilityZone" : "us-east-1a",
+            "CidrBlock": "172.31.128.0/20",
+            "AvailabilityZone" : "us-east-1e"
          }
       },
 
@@ -57,8 +117,8 @@
          "Type" : "AWS::EC2::Subnet",
          "Properties" : {
             "VpcId" : {"Ref": "vpcId"},
-            "CidrBlock" : "10.0.0.0/24",
-            "AvailabilityZone" : "us-east-1b",
+            "CidrBlock": "172.31.112.0/20",
+            "AvailabilityZone" : "us-east-1b"
          }
       },
 	
@@ -66,17 +126,7 @@
          "Type" : "AWS::RDS::DBSubnetGroup",
          "Properties" : {
             "DBSubnetGroupDescription" : "description",
-            "SubnetIds" : [{
-                        "Fn::GetAtt": [
-                            "Subnet1",
-                            "subnetId"
-                        ]
-                    }, {
-                        "Fn::GetAtt": [
-                            "Subnet2",
-                            "subnetId"
-                        ]
-                    }  ],
+            "SubnetIds" : [{"Ref" : "Subnet1"},{"Ref" : "Subnet2"}]
             
          }
       },
@@ -115,7 +165,7 @@
             "Properties": {
 				
                 "GroupDescription": "Enable HTTP access via port 3306",
-                "VpcId": {"Ref": "vpcId"},
+                "VpcId": {"Ref": "vpcId"}
                 
             } 
         } ,
@@ -123,13 +173,13 @@
 	"csye6225rdsIngress": {
             "Type": "AWS::EC2::SecurityGroupIngress",
             "Properties": {
-                "GroupName": {
-                    "Ref": "csye6225webapp"
+                "GroupId": {
+                    "Ref": "csye6225rds"
                 },
                 "IpProtocol": "tcp",
                 "FromPort": "3306",
                 "ToPort": "3306",
-                "SourceSecurityGroupName": {
+                "SourceSecurityGroupId": {
                     "Ref": "csye6225webapp"
                 }
             }
