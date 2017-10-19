@@ -11,11 +11,7 @@ import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.*;
 
 
 import com.csye6225.demo.entities.User;
@@ -43,18 +39,18 @@ public class RegisterUserController {
 
     //@GetMapping(path="/register") // Map ONLY GET Requests
     @RequestMapping(value="/register",method=RequestMethod.POST,produces="application/json")
-    public @ResponseBody String addNewUser (HttpServletRequest request, HttpServletResponse response){
+    public @ResponseBody String addNewUser (@RequestBody User user, HttpServletRequest request, HttpServletResponse response){
         //@RequestParam String email, @RequestParam String password) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        //String email = request.getParameter("email");
+        //String password = request.getParameter("password");
 
-        if(helper.validateUserEmail(email) == null) {
+        if(helper.validateUserEmail(user.getEmail()) == null) {
             User newUser = new User();
-            //newUser.setName(name);
-            newUser.setEmail(email);   //
-            newUser.setPassword(bCryptPasswordEncoder.encode(password));
+            newUser.setName(user.getName());
+            newUser.setEmail(user.getEmail());   //
+            newUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             userRepository.save(newUser);
 
             JsonObject jsonObject = new JsonObject();
