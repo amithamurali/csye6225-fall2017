@@ -40,6 +40,7 @@ public class TaskController {
 
     @RequestMapping(value = "/tasks", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
+<<<<<<< HEAD
     public String addTask(@RequestBody Task userTask, HttpServletRequest request, HttpServletResponse response) {
 
         JsonObject jsonObject = new JsonObject();
@@ -60,6 +61,27 @@ public class TaskController {
 
                     taskRepository.save(userTask);
 
+=======
+    public String addTask(HttpServletRequest request, HttpServletResponse response) {
+
+        JsonObject jsonObject = new JsonObject();
+
+        String taskDescription = request.getParameter("description");
+
+        if(taskDescription.length() < 4096) {
+            String header = request.getHeader("Authorization");
+            if (header != null) {
+
+                int userID = helper.GetUserDetails(header);
+
+                if (userID > -1) {
+                    Task userTask = new Task();
+                    userTask.setId();
+                    userTask.setUserId(userID);
+                    userTask.setDescription(taskDescription);
+                    taskRepository.save(userTask);
+
+>>>>>>> 515edb7d45e949a85c03690876bd2278e6f0dd28
 
                     jsonObject.addProperty("message", "Task has been created successfully for the User.");
                     jsonObject.addProperty("userId", userTask.getUserId());
@@ -72,6 +94,13 @@ public class TaskController {
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     jsonObject.addProperty("message", "You are not authorized to perform this activity");
                 }
+<<<<<<< HEAD
+=======
+            }
+            else{
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                jsonObject.addProperty("message", "You are not authorized to perform this activity");
+>>>>>>> 515edb7d45e949a85c03690876bd2278e6f0dd28
             }
             else{
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -82,12 +111,21 @@ public class TaskController {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             jsonObject.addProperty("message", "Description exceeds maximum number of allowed characters.");
         }
+        else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            jsonObject.addProperty("message", "Description exceeds maximum number of allowed characters.");
+        }
 
         return jsonObject.toString();
     }
 
+<<<<<<< HEAD
     @RequestMapping(value="/tasks/{id}",method= RequestMethod.PUT,produces="application/json")
     public @ResponseBody String updateTask (@RequestBody Task userTask, HttpServletRequest request, HttpServletResponse response){
+=======
+    @RequestMapping(value="/tasks/{id}",method= RequestMethod.POST,produces="application/json")
+    public @ResponseBody String updateTask (HttpServletRequest request, HttpServletResponse response){
+>>>>>>> 515edb7d45e949a85c03690876bd2278e6f0dd28
 
         JsonObject jsonObject = new JsonObject();
 
@@ -104,7 +142,11 @@ public class TaskController {
                 Task task = taskRepository.findOne(Long.parseLong(taskId));
                 if(task != null) {
                     if(task.getUserId() == userID) {
+<<<<<<< HEAD
                         task.setDescription(userTask.getDescription());
+=======
+                        task.setDescription(taskDescription);
+>>>>>>> 515edb7d45e949a85c03690876bd2278e6f0dd28
                         taskRepository.save(task);
                         jsonObject.addProperty("message", "Task updated successfully.");
                         return jsonObject.toString();
@@ -169,6 +211,14 @@ public class TaskController {
                         jsonObject.addProperty("message", "You are not authorized to perform this activity");
                     }
 
+<<<<<<< HEAD
+                }
+                else{
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    jsonObject.addProperty("message", "This is a bad request");
+                }
+
+=======
                 }
                 else{
                     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -179,7 +229,16 @@ public class TaskController {
             else{
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 jsonObject.addProperty("message", "You are not authorized to perform this activity");
+>>>>>>> 515edb7d45e949a85c03690876bd2278e6f0dd28
             }
+            else{
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                jsonObject.addProperty("message", "You are not authorized to perform this activity");
+            }
+        }
+        else{
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            jsonObject.addProperty("message", "You are not authorized to perform this activity");
         }
         else{
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
