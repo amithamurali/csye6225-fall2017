@@ -14,6 +14,7 @@ import com.csye6225.demo.helpers.Helper;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,13 +40,13 @@ public class TaskController {
 
     @RequestMapping(value = "/tasks", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public String addTask(HttpServletRequest request, HttpServletResponse response) {
+    public String addTask(@RequestBody Task userTask, HttpServletRequest request, HttpServletResponse response) {
 
         JsonObject jsonObject = new JsonObject();
 
-        String taskDescription = request.getParameter("description");
+        //String taskDescription = request.getParameter("description");
 
-        if(taskDescription.length() < 4096) {
+        if(userTask.getDescription().length() < 4096) {
             String header = request.getHeader("Authorization");
             if (header != null) {
 
@@ -53,10 +54,10 @@ public class TaskController {
                 userID = helper.GetUserDetails(header);
 
                 if (userID > -1) {
-                    Task userTask = new Task();
+
                     userTask.setId();
                     userTask.setUserId(userID);
-                    userTask.setDescription(taskDescription);
+
                     taskRepository.save(userTask);
 
 
@@ -85,8 +86,8 @@ public class TaskController {
         return jsonObject.toString();
     }
 
-    @RequestMapping(value="/tasks/{id}",method= RequestMethod.POST,produces="application/json")
-    public @ResponseBody String updateTask (HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping(value="/tasks/{id}",method= RequestMethod.PUT,produces="application/json")
+    public @ResponseBody String updateTask (@RequestBody Task userTask, HttpServletRequest request, HttpServletResponse response){
 
         JsonObject jsonObject = new JsonObject();
 
@@ -103,7 +104,7 @@ public class TaskController {
                 Task task = taskRepository.findOne(Long.parseLong(taskId));
                 if(task != null) {
                     if(task.getUserId() == userID) {
-                        task.setDescription(taskDescription);
+                        task.setDescription(userTask.getDescription());
                         taskRepository.save(task);
                         jsonObject.addProperty("message", "Task updated successfully.");
                         return jsonObject.toString();
