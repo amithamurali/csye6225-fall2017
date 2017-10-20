@@ -30,10 +30,10 @@ before_deploy:
 
 deploy:
   - provider: s3
-  access_key_id: AKIAIUZLVF7ZPZTBUC5Q
-  secret_access_key:
-    secure: "mdHPUpBawjLQrlgZWoGvZuDZja8Cl3vSZw6+i9fdFrActfzkg4d9fuGMfFt1pN7TFQLIlTaW93GerxZe/27CAai1TVC21R/L/Dt/hLf55ch7D88N0DjZ+uHe2pHV+fRT0LYelQQEniHajd1uyCgopMoj5UpJMsywUF0LC0T3Gpvj3YqAd0uHoi72p4bGr4H+ug2uZ1Njhcv8cylzZA8g1bO90L7enMbgkvzstA0KELGirk5kAvVo3u2tqZ4qVAsr2p7TiDM62be/QSnsQYoHJtsnDH8taueMekiWneRbbP3T2075UKVLyOAip02VcFMzhdorXTdc01Gm3o0e3+VMbjQkzfzBLNnJen5y5yO3S8oQ8HtSzz+9h7OB/AkXQOq/D5kQGKgK0AI9CAxK1Q0JtewSTxMpJ9P9cBrhieR9mxbcQoPd6CAHb6XsT89ggiHWvLafvyDr3i/ZPrk18c+HSq6TWnX7bDltfXKk64yMazzy1U3eCBF7Tsiv/ge2IltDZvuktwUdp6hddjc68Mcm1S6mDHjeGIED3kg4YXNpltdERmGpt15ehoj+ViMBup1JEPr7FE5Pge8oJP6YUM6M4llr9V6nhcH0L9AaXBpihRx1ImE+hdTsWbzjddRRB+YRhh79Bho+J1mHtBAylSoyU33bV6/TCV4tcFy8NBVOc9g="
-  local_dir: codedeploy
-  bucket: code-deploy.csye6225-fall2017-muralia.me
-  region: us-east-1
-  skip_cleanup: true
+    access_key_id: AKIAIUZLVF7ZPZTBUC5Q
+    secret_access_key:
+      secure: "mdHPUpBawjLQrlgZWoGvZuDZja8Cl3vSZw6+i9fdFrActfzkg4d9fuGMfFt1pN7TFQLIlTaW93GerxZe/27CAai1TVC21R/L/Dt/hLf55ch7D88N0DjZ+uHe2pHV+fRT0LYelQQEniHajd1uyCgopMoj5UpJMsywUF0LC0T3Gpvj3YqAd0uHoi72p4bGr4H+ug2uZ1Njhcv8cylzZA8g1bO90L7enMbgkvzstA0KELGirk5kAvVo3u2tqZ4qVAsr2p7TiDM62be/QSnsQYoHJtsnDH8taueMekiWneRbbP3T2075UKVLyOAip02VcFMzhdorXTdc01Gm3o0e3+VMbjQkzfzBLNnJen5y5yO3S8oQ8HtSzz+9h7OB/AkXQOq/D5kQGKgK0AI9CAxK1Q0JtewSTxMpJ9P9cBrhieR9mxbcQoPd6CAHb6XsT89ggiHWvLafvyDr3i/ZPrk18c+HSq6TWnX7bDltfXKk64yMazzy1U3eCBF7Tsiv/ge2IltDZvuktwUdp6hddjc68Mcm1S6mDHjeGIED3kg4YXNpltdERmGpt15ehoj+ViMBup1JEPr7FE5Pge8oJP6YUM6M4llr9V6nhcH0L9AaXBpihRx1ImE+hdTsWbzjddRRB+YRhh79Bho+J1mHtBAylSoyU33bV6/TCV4tcFy8NBVOc9g="
+    local_dir: codedeploy
+    bucket: code-deploy.csye6225-fall2017-muralia.me
+    region: us-east-1
+    skip_cleanup: true
