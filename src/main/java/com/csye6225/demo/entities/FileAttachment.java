@@ -1,5 +1,7 @@
 package com.csye6225.demo.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 /**
@@ -12,29 +14,27 @@ import javax.persistence.*;
 public class FileAttachment {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+
+    private String id;
 
     private String path;
 
-    private long taskId;
+    private String taskId;
 
     private int userId;
 
-    public long getTaskId() {
+    public String getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(long taskId) {
+    public void setTaskId(String taskId) {
         this.taskId = taskId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getPath() {

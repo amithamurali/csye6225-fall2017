@@ -40,7 +40,7 @@ public class FileAttachmentController {
 
     @Autowired
     private TaskRepository taskRepository;
-
+z
     @RequestMapping(value="/tasks/{id}/attachments",method= RequestMethod.GET,produces="application/json")
     public @ResponseBody String getAttachedFilesForTask (HttpServletRequest request, HttpServletResponse response){
 
@@ -49,15 +49,15 @@ public class FileAttachmentController {
         //Write add file code here
 
         String header = request.getHeader("Authorization");
-        long taskId = Long.parseLong(request.getRequestURI().split("/")[2]);
+        String taskId = request.getRequestURI().split("/")[2];
         if(header != null) {
 
             int userID = helper.GetUserDetails(header);
 
             if(userID > -1) {
 
-                if(taskId > 0) {
-                    Task task = taskRepository.findOne( taskId );
+                if(taskId !="") {
+                    Task task = taskRepository.findOne(taskId);
                     if(task.getUserId() == userID) {
 
                         ArrayList<String> fileList = helper.getFileList( taskId );
@@ -66,7 +66,8 @@ public class FileAttachmentController {
                             jsonObject.addProperty( "message", "No file exists." );
                             return jsonObject.toString();
                         } else {
-                            jsonObject.addProperty( "message", "Here is the list of files attached to the task " + fileList.toString() );
+                            for(String filePath : fileList)
+                            {jsonObject.addProperty( "message", "File attached to the task " + filePath );}
                             return jsonObject.toString();
                         }
                     }
@@ -100,7 +101,7 @@ public class FileAttachmentController {
         //Write add file code here
 
         // location to store file uploaded
-        final String UPLOAD_DIRECTORY = "/home/jyoti/Downloads/assgn5/uploads";
+        final String UPLOAD_DIRECTORY = "/home/surabhi/Documents/NSCC/Assignment 6 file upload";
 
         // upload settings
         final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
@@ -128,14 +129,14 @@ public class FileAttachmentController {
         //String uploadPath = getServletContext().getRealPath("")+ File.separator + UPLOAD_DIRECTORY;
 
         // creates the directory if it does not exist
-        File uploadDir = new File("/home/jyoti/Downloads/assgn5/uploads");
+        File uploadDir = new File("/home/surabhi/Documents/NSCC/Assignment 6 file upload");
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
         }
 
         try {
             // parses the request's content to extract file data
-                        filePath = "/home/jyoti/Downloads/assgn5/uploads" + File.separator + theFile.getOriginalFilename();
+                        filePath = "/home/surabhi/Documents/NSCC/Assignment 6 file upload" + File.separator + theFile.getOriginalFilename();
                         File storeFile = new File(filePath);
 
                         // saves the file on disk
@@ -153,14 +154,14 @@ public class FileAttachmentController {
         }
 
         String header = request.getHeader("Authorization");
-        Long taskId = Long.parseLong(request.getRequestURI().split("/")[2]);
+        String taskId = request.getRequestURI().split("/")[2];
         if(header != null) {
 
             int userID = helper.GetUserDetails(header);
 
             if(userID > -1) {
 
-                if(taskId > 0) {
+                if(taskId != "") {
 
                     Task task = taskRepository.findOne( taskId );
 
@@ -174,8 +175,8 @@ public class FileAttachmentController {
                         fileAttachmentRepository.save( file );
 
                         jsonObject.addProperty( "message", "File has been uploaded successfully for the User task." );
-                        jsonObject.addProperty( "userId", file.getUserId() );
-                        jsonObject.addProperty( "taskId", file.getId().toString() );
+                        jsonObject.addProperty( "taskId", file.getTaskId());
+                        jsonObject.addProperty( "fileId", file.getId());
                         jsonObject.addProperty( "filePath", file.getPath() );
                         return jsonObject.toString();
                     }
@@ -206,25 +207,26 @@ public class FileAttachmentController {
         //Write delete file code here
 
         String header = request.getHeader("Authorization");
-        Long taskId = Long.parseLong(request.getRequestURI().split("/")[2]);
-        Long fileAttachmentId = Long.parseLong( request.getRequestURI().split( "/" )[4] );
+        String taskId = request.getRequestURI().split("/")[2];
+        String fileAttachmentId = request.getRequestURI().split( "/" )[4] ;
         if(header != null) {
 
             int userID = helper.GetUserDetails(header);
 
             if(userID > -1) {
 
-                if(taskId > 0) {
-                    if(fileAttachmentId > 0) {
+                if(taskId != "") {
+                    if(fileAttachmentId !="") {
 
                        FileAttachment file = fileAttachmentRepository.findOne(fileAttachmentId ) ;
 
                        if(file != null) {
                            Task task = taskRepository.findOne( taskId );
                            if(task.getUserId() == userID){
-                           if (file.getTaskId() == taskId) {
+                           if (file.getTaskId().equals(taskId)) {
                                if (file.getUserId() == userID) {
-                                   fileAttachmentRepository.delete( file );
+                                   FileAttachment delFile = fileAttachmentRepository.findOne(file.getId());
+                                   fileAttachmentRepository.delete( delFile );
                                    jsonObject.addProperty( "message", "File has been deleted successfully for the User task." );
                                    return jsonObject.toString();
                                } else {
