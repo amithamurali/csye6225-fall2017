@@ -55,7 +55,7 @@ public class TaskController {
 
                 if (userID > -1) {
 
-                    userTask.setId();
+                    //userTask.setId();
                     userTask.setUserId(userID);
 
                     taskRepository.save(userTask);
@@ -101,7 +101,7 @@ public class TaskController {
 
             if (userID > -1) {
 
-                Task task = taskRepository.findOne(Long.parseLong(taskId));
+                Task task = taskRepository.findOne(taskId);
                 if(task != null) {
                     if(task.getUserId() == userID) {
                         task.setDescription(userTask.getDescription());
@@ -148,12 +148,12 @@ public class TaskController {
 
             if (userID > -1) {
 
-                Task task = taskRepository.findOne(Long.parseLong(taskId));
+                Task task = taskRepository.findOne(taskId);
                 if(task != null) {
                     if(task.getUserId() == userID) {
 
-                        ArrayList<Long> fileIDs = helper.getFileIDs(Long.parseLong( taskId ));
-                        for (Long id : fileIDs    ) {
+                        ArrayList<String> fileIDs = helper.getFileIDs( taskId );
+                        for (String id : fileIDs    ) {
                             FileAttachment file = fileAttachmentRepository.findOne(id ) ;
                             if(file != null) {
                                 fileAttachmentRepository.delete( file );
