@@ -418,7 +418,7 @@
 	"S3Bucket" : {
 	 "Type": "AWS::S3::Bucket",
 	"Properties" : {
-	"BucketName" : "csye6225-fall2017-muralia.me.csye6225.com"}
+	"BucketName" : "csye6225-fall2017-patilsur.me.csye6225.com"}
 	},
 
 

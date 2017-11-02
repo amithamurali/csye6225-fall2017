@@ -35,6 +35,6 @@ Instructions to run unit, integration and/or load tests.
 * Add HTTP requests in the thread group
 * Run the test
 
-Link to TravisCI build for the project
+Link to TravisCI build for the project.
 
 * https://travis-ci.com/amithamurali/csye6225-fall2017
