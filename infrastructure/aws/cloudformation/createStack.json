@@ -3,7 +3,11 @@
     "Description": "Sample CloudFormation Template for CSYE 6225 - Fall 2017",
 
  	"Parameters": {
+<<<<<<< HEAD
 			"imageId": {
+=======
+			"imgId": {
+>>>>>>> master
 				"Description": "imageId",
 				"Type": "String"
 			},
@@ -55,6 +59,17 @@
 				"Description": "Record set time to live",
 				"Type": "String"
 				
+<<<<<<< HEAD
+=======
+			},
+			"rdsParamUsername": {
+				"Description": "database username",
+				"Type": "String"
+			},
+			"rdsParamPassword": {
+				"Description": "database password",
+				"Type": "String"
+>>>>>>> master
 			}
 
 
@@ -62,12 +77,196 @@
 
 
     "Resources": {
+<<<<<<< HEAD
+=======
+"RDSConnectPolicy": {
+	"Type":"AWS::IAM::ManagedPolicy",
+	
+	"Properties" : {
+		"PolicyDocument" : {
+	
+	"Version" : "2012-10-17",
+	"Statement" : [
+		{	
+			"Sid":"Stmt1508975155000",
+			"Effect":"Allow",
+			"Action":[
+				"rds-db:connect"			
+			],
+			"Resource": [
+                "*"
+            ]
+		}
+
+		]	
+		
+},
+"Users" : [ "dbuser"],
+	"ManagedPolicyName": "AWS_RDS_IAM_2"
+}
+
+},
+
+"insProfile":{
+         "Type":"AWS::IAM::InstanceProfile",
+         "Properties":{
+            "Roles":[
+               {
+                  "Ref":"CodeDeployEC2ServiceRole2"
+               }
+            ]
+         }
+      },
+      "CodeDeployEC2ServiceRole2":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "ec2.amazonaws.com"
+                        ]
+                     },
+                     "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/"
+         }
+      },
+      "CodeDeployEC2S33":{
+         "Type":"AWS::IAM::Policy",
+         "Properties":{
+            "PolicyName":"CodeDeployEC2S33",
+            "PolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Action":[
+                        "s3:Get*",
+                        "s3:List*"
+                     ],
+                     "Effect":"Allow",
+                     "Resource":"*"
+                  }
+               ]
+            },
+            "Roles":[
+               {
+                  "Ref":"CodeDeployEC2ServiceRole2"
+               }
+            ]
+         }
+      },
+      "CodeDeployServiceRole2":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "ec2.amazonaws.com"
+                        ]
+                     },
+                     "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/"
+         }
+      },
+      "AWSCodeDeployRole":{
+         "Type":"AWS::IAM::Policy",
+         "Properties":{
+            "PolicyName":"AWSCodeDeployRole2",
+            "PolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Action":[
+                        "autoscaling:CompleteLifecycleAction",
+                        "autoscaling:DeleteLifecycleHook",
+                        "autoscaling:DescribeAutoScalingGroups",
+                        "autoscaling:DescribeLifecycleHooks",
+                        "autoscaling:PutLifecycleHook",
+                        "autoscaling:RecordLifecycleActionHeartbeat",
+                        "autoscaling:CreateAutoScalingGroup",
+                        "autoscaling:UpdateAutoScalingGroup",
+                        "autoscaling:EnableMetricsCollection",
+                        "autoscaling:DescribeAutoScalingGroups",
+                        "autoscaling:DescribePolicies",
+                        "autoscaling:DescribeScheduledActions",
+                        "autoscaling:DescribeNotificationConfigurations",
+                        "autoscaling:DescribeLifecycleHooks",
+                        "autoscaling:SuspendProcesses",
+                        "autoscaling:ResumeProcesses",
+                        "autoscaling:AttachLoadBalancers",
+                        "autoscaling:PutScalingPolicy",
+                        "autoscaling:PutScheduledUpdateGroupAction",
+                        "autoscaling:PutNotificationConfiguration",
+                        "autoscaling:PutLifecycleHook",
+                        "autoscaling:DescribeScalingActivities",
+                        "autoscaling:DeleteAutoScalingGroup",
+                        "ec2:DescribeInstances",
+                        "ec2:DescribeInstanceStatus",
+                        "ec2:TerminateInstances",
+                        "tag:GetTags",
+                        "tag:GetResources",
+                        "sns:Publish",
+                        "cloudwatch:DescribeAlarms",
+                        "cloudwatch:PutMetricAlarm",
+                        "elasticloadbalancing:DescribeLoadBalancers",
+                        "elasticloadbalancing:DescribeInstanceHealth",
+                        "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                        "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                        "elasticloadbalancing:DescribeTargetGroups",
+                        "elasticloadbalancing:DescribeTargetHealth",
+                        "elasticloadbalancing:RegisterTargets",
+                        "elasticloadbalancing:DeregisterTargets"
+                     ],
+                     "Resource":"*"
+                  }
+               ]
+            },
+            "Roles":[
+               {
+                  "Ref":"CodeDeployServiceRole2"
+               }
+            ]
+         }
+      },
+>>>>>>> master
 
         "EC2Instance": {
             "Type": "AWS::EC2::Instance",
             "Properties": {
+<<<<<<< HEAD
 				"KeyName" : {"Ref": "keyName"},
                 "ImageId": {"Ref": "imageId"},
+=======
+	"IamInstanceProfile" : {
+		"Ref":"insProfile"			
+		},
+        "KeyName" : {"Ref": "keyName"},
+	"Tags": [
+		{
+			"Key":"name",
+			"Value" : "csye6225"
+		}
+],
+                "ImageId": {"Ref": "imgId"},
+>>>>>>> master
                 "InstanceType": {"Ref": "InstType"},
                 "SecurityGroupIds": [
                     {
@@ -77,6 +276,7 @@
                         ]
                     }
                 ],
+<<<<<<< HEAD
 				"DisableApiTermination": "TRUE",
 				"BlockDeviceMappings" : [
                 {
@@ -117,6 +317,55 @@
 		}
             }
         },
+=======
+        "DisableApiTermination": "TRUE",
+        "BlockDeviceMappings" : [
+                {
+                "DeviceName" : "/dev/sda1",
+                "Ebs" : {
+                          "DeleteOnTermination": true,
+                          "VolumeSize": {"Ref": "volumeSize"},
+                          "VolumeType": {"Ref": "volumeType"}
+                        }
+                }
+                ],
+        "UserData": { "Fn::Base64" : { "Fn::Join" : ["", [
+				"#!/bin/bash -v \n",
+				"apt-get update \n",
+				"apt-get install default-jdk -y \n",
+				"update-alternatives --config java \n",
+				"echo JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java' >> /etc/environment \n",
+				"echo 'export JAVA_HOME' >> /etc/environment \n", 
+				"source /etc/environment \n",
+				"apt-get install curl -y \n",
+				
+	
+				
+				"sudo apt-get install tomcat8 -y \n",
+				"echo '#!/bin/sh' >> /usr/share/tomcat8/bin/setenv.sh \n",
+	{"Fn::Join":["",["echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.url=\"jdbc:mysql://",{"Fn::GetAtt":["DBInstance","Endpoint.Address"]},":3306/csye6225fall2017\"\"'>> /usr/share/tomcat8/bin/setenv.sh \n"]]},
+	 
+	 "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.username=\"",{"Ref":"rdsParamUsername"},"\"\"' >> /usr/share/tomcat8/bin/setenv.sh \n",
+	 "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.password=\"",{"Ref":"rdsParamPassword"},"\"\"' >> /usr/share/tomcat8/bin/setenv.sh \n",
+				"chmod -R 777 bin/* \n",
+	
+				"apt-get install ruby -y\n",
+				"cd /home/ubuntu \n",
+				"curl -O https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install \n",
+				"chmod +x ./install \n",
+				"./install auto"
+				
+				
+				
+		]
+	 	]
+				}
+	
+			}
+         }
+       
+},
+>>>>>>> master
 
 	"ResourceRecordSet" : {
 	"Type" : "AWS::Route53::RecordSet",
@@ -186,6 +435,7 @@
             } 
         } ,
 
+<<<<<<< HEAD
 	"csye6225rds": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
@@ -211,6 +461,23 @@
             }
         },
 
+=======
+	"RDSSecurityGroup": {
+	      "Type": "AWS::EC2::SecurityGroup",
+	      "Properties": {
+	        "GroupDescription": "Open database for access",
+	        "GroupName": "csye6225rds",
+	        "SecurityGroupIngress": [{
+	          "IpProtocol": "tcp",
+	          "FromPort": "3306",
+	          "ToPort": "3306",
+	          "SourceSecurityGroupId": {
+	            "Fn::GetAtt": ["csye6225webapp", "GroupId"]
+	          }
+	        }]
+	      }
+},
+>>>>>>> master
 	"DynamoDBTable" :{
 	"Type": "AWS::DynamoDB::Table",
 	"Properties" : {
@@ -241,6 +508,7 @@
 	},
 
 
+<<<<<<< HEAD
 	"DBInstance" : {
  	 "Type" : "AWS::RDS::DBInstance",
    	"Properties" : {
@@ -260,4 +528,26 @@
     	}
 	}
 }
+=======
+"DBInstance" : {
+    "Type" : "AWS::RDS::DBInstance",
+    "Properties" : {
+    "AllocatedStorage" :"100",
+    "DBName" : "csye6225fall2017",
+    "DBInstanceClass" : "db.t2.medium",
+    "DBInstanceIdentifier" : "csye6225-fall2017",
+    "DBSubnetGroupName": {"Ref": "DBSubnetGroup"},
+     "VPCSecurityGroups": [{
+	          "Fn::GetAtt": ["RDSSecurityGroup", "GroupId"]
+	        }],
+    "Engine" : "MySQL",
+    "MasterUsername" : {"Ref" : "rdsParamUsername"},
+    "MasterUserPassword" : {"Ref" : "rdsParamPassword"},
+    "MultiAZ" : "FALSE",
+    "PubliclyAccessible" : "FALSE"
+    }
+}
+	}
+}
+>>>>>>> master
 
