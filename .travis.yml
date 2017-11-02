@@ -7,8 +7,7 @@ script:
 - "./gradlew build"
 
 
-on:
-  all_branches: true
+
 
 after_success:
   - pwd
@@ -37,9 +36,8 @@ deploy:
     bucket: code-deploy.csye6225-fall2017-patilsur.me
     region: us-east-1
     skip_cleanup: true
-    all_branches: true
-    on:
-      branch:master
+    
+
   - provider: codedeploy
     access_key_id: AKIAJP4QMW3IDX7QEN2A
     bucket: code-deploy.csye6225.com-fall2017-patilsur.me
@@ -51,9 +49,7 @@ deploy:
     secret_access_key:
       secure:  "Poh+s4Grr2WEymf5g34g68IeAmLI6Z41lT0tbTUdxrYtGl/aS4+okxp86Q+I63JRK1skk6aZJXPXDnco5e1NcwoylG2hnH2Jiv/IUfgof6PGUA4VUqMkPGihyDxvykhFR9sodB5DSrHCoA8Xbp4c4kwiV9+1bJI38hoee4gUrN6lsrLe0SyvzVt7a7olKdlZBAtTpglJue9a2kdMmfbkEC9rR1kR2goz+xb5ymFl3rYPFb8zNpG/oYRQaI26H2VvxVJ4+NPZOgsBUHHROcXos+cYRBMDmELztc8OiSJzdWVv6x+d4TMHZudO5bgIYdtv03zOgYoFZkElYJvKeCoR42gfFx0RQzMaUzeFjoqP48Ae7yDh/JqBXwFe625LX5VthUOBkzRVVziDRF5HLekit13vM3AY0B0Q2mKux5Zwp/Tkupd63oBblsiTjoAIdaRqnT9W5h1QHvSRqYFyWdmPS9wsrlsnhmKsZPhCDC9OXMT5iVAxeNkdw+5MpjLeHk2Tz+wbZsHlbcTDbqIPwhd15IfOxxu8gRsI6myYuYWa0mOH4nmrnxy+4L8IC8Q+wF7cHvGn56aV8JRd9MUSL5eit4YI5IOHxFm8oTAfAQeLVT9xe2xId+deYEy22XCJ8QGdV/ozlp1dWkLDv5J4U++rxvfFmo8KXeY27TdXrG2eEKc="
     wait-until-deployed: true
-    all_branches: true
-    on:
-      branch: master
+    
 
 
 notifications:
