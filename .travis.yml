@@ -7,6 +7,9 @@ script:
 - "./gradlew build"
 
 
+on:
+  all_branches: true
+
 after_success:
   - pwd
   - mkdir codedeploy
