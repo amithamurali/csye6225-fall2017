@@ -4,7 +4,6 @@ jdk:
 sudo: false
 install: true
 script:
-- cd csye6225-spring-boot-starter-webapp-master
 - "./gradlew build"
 
 
