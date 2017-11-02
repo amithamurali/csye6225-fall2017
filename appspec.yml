@@ -9,6 +9,7 @@ files:
   - source: ./build/libs/ROOT.war
     destination: /var/lib/tomcat8/webapps
 
+
 hooks:
   AfterInstall:
    - location: ./restartTomcat.sh

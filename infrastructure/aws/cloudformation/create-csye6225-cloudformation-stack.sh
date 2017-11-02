@@ -30,12 +30,22 @@ echo "Please enter the RecordSet Type"
 read recordSetType
 echo "Please enter the RecordSeT Time to Live"
 read recordSetTTL
+<<<<<<< HEAD
 
 aws cloudformation create-stack --stack-name $stackName --template-body file://./createStack.json --parameters ParameterKey=imageId,ParameterValue=$imageId ParameterKey=vpcId,ParameterValue=$vpcId ParameterKey=keyName,ParameterValue=$keyName ParameterKey=snapshotId,ParameterValue=$snapshotId ParameterKey=InstType,ParameterValue=$InstType ParameterKey=volumeSize,ParameterValue=$volumeSize ParameterKey=volumeType,ParameterValue=$volumeType ParameterKey=hostedZoneId,ParameterValue=$hostedZoneId ParameterKey=dnsName,ParameterValue=$dnsName ParameterKey=recordSetType,ParameterValue=$recordSetType ParameterKey=recordSetTTL,ParameterValue=$recordSetTTL
 
 aws cloudformation validate-template --template-body file://./createStack.json
 
 
-#aws cloudformation create-stack --stack-name teststack --template-body file://./createStack.json --capabilities "CAPABILITY_NAMED_IAM" --parameters ParameterKey=imageId,ParameterValue=ami-cd0f5cb6 ParameterKey=vpcId,ParameterValue=vpc-56fd1a2e ParameterKey=keyName,ParameterValue=aws-key-pair ParameterKey=snapshotId,ParameterValue=snap-0cfc17b071e696816 ParameterKey=InstType,ParameterValue=t2.micro ParameterKey=volumeSize,ParameterValue=16 ParameterKey=volumeType,ParameterValue=gp2 ParameterKey=hostedZoneId,ParameterValue=Z1V8ZHS4H3Z5H7 ParameterKey=dnsName,ParameterValue=ec2.csye6225-fall2017-patilsur.me ParameterKey=recordSetType,ParameterValue=A ParameterKey=recordSetTTL,ParameterValue=60 ParameterKey=rdsParamUsername,ParameterValue=csye6225master ParameterKey=rdsParamPassword,ParameterValue=csye6225password
+#aws cloudformation create-stack --stack-name teststack --template-body file://./createStack.json --parameters ParameterKey=imageId,ParameterValue=ami-cd0f5cb6 ParameterKey=vpcId,ParameterValue=vpc-56fd1a2e ParameterKey=keyName,ParameterValue=aws-key-pair ParameterKey=snapshotId,ParameterValue=snap-0cfc17b071e696816 ParameterKey=InstType,ParameterValue=t2.micro ParameterKey=volumeSize,ParameterValue=16 ParameterKey=volumeType,ParameterValue=gp2 ParameterKey=hostedZoneId,ParameterValue=Z1V8ZHS4H3Z5H7 ParameterKey=dnsName,ParameterValue=ec2.csye6225-fall2017-patilsur.me ParameterKey=recordSetType,ParameterValue=A ParameterKey=recordSetTTL,ParameterValue=60
+=======
+
+aws cloudformation create-stack --stack-name $stackName --template-body file://./createStack.json --parameters ParameterKey=imageId,ParameterValue=$imageId ParameterKey=vpcId,ParameterValue=$vpcId ParameterKey=keyName,ParameterValue=$keyName ParameterKey=snapshotId,ParameterValue=$snapshotId ParameterKey=InstType,ParameterValue=$InstType ParameterKey=volumeSize,ParameterValue=$volumeSize ParameterKey=volumeType,ParameterValue=$volumeType ParameterKey=hostedZoneId,ParameterValue=$hostedZoneId ParameterKey=dnsName,ParameterValue=$dnsName ParameterKey=recordSetType,ParameterValue=$recordSetType ParameterKey=recordSetTTL,ParameterValue=$recordSetTTL
+
+aws cloudformation validate-template --template-body file://./createStack.json
 
 
+#aws cloudformation create-stack --stack-name teststack --template-body file:///home/surabhi/GitCommits/csye6225-fall2017-1/infrastructure/aws/cloudformation/createStack.json --capabilities "CAPABILITY_NAMED_IAM" --parameters ParameterKey=imgId,ParameterValue=ami-cd0f5cb6 ParameterKey=vpcId,ParameterValue=vpc-56fd1a2e ParameterKey=keyName,ParameterValue=aws-key-pair ParameterKey=snapshotId,ParameterValue=snap-0cfc17b071e696816 ParameterKey=InstType,ParameterValue=t2.micro ParameterKey=volumeSize,ParameterValue=16 ParameterKey=volumeType,ParameterValue=gp2 ParameterKey=hostedZoneId,ParameterValue=Z1V8ZHS4H3Z5H7 ParameterKey=dnsName,ParameterValue=ec2.csye6225-fall2017-patilsur.me ParameterKey=recordSetType,ParameterValue=A ParameterKey=recordSetTTL,ParameterValue=60 ParameterKey=rdsParamUsername,ParameterValue=csye6225master ParameterKey=rdsParamPassword,ParameterValue=csye6225password
+
+
+>>>>>>> master
