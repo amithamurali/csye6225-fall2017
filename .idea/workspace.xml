@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76b60bc1-05e1-4d65-925d-29ae6ca29d76" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/service/FileUploadImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/service/FileUploadService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/service/TaskService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/service/TaskServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/service/UserService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/service/UserServiceImpl.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___ROOT_war__exploded_.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___ROOT_war__exploded_.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/FileAttachmentController.java" afterPath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/FileAttachmentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -56,8 +46,8 @@
       <file leaf-file-name="RegisterUserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            <state relative-caret-position="540">
+              <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -565,6 +555,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/FileAttachmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java" />
       </list>
     </option>
   </component>
@@ -793,12 +784,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1509649961884</updated>
-      <workItem from="1509649964728" duration="580000" />
+      <workItem from="1509649964728" duration="1186000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="580000" />
+    <option name="totallyTimeSpent" value="1186000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="954" extended-state="6" />
@@ -900,8 +891,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        <state relative-caret-position="540">
+          <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
           <folding />
         </state>
       </provider>
