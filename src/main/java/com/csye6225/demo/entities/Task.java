@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.List;
 import java.util.UUID;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -48,10 +47,6 @@ public class Task {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public List<FileUpload> getFiles() {
-        return files;
     }
 
     //private Long generateUniqueId()
