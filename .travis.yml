@@ -43,7 +43,7 @@ deploy:
     bucket: csye6225-fall2017-muralia.me.csye6225.com
     key: csye6225-spring-boot-starter-webapp-master.zip
     bundle_type: zip
-    application: csye6225-spring-boot-starter-webapp-master
+    application: myProject
     deployment_group: SimpleJavaProject
     region: us-east-1
     secret_access_key:
