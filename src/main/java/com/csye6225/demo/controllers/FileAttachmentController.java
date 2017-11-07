@@ -173,12 +173,12 @@ public class FileAttachmentController {
 
             URL signedUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
             filePath = "/home/surabhi/Documents/NSCC/Assignment 6 file upload" + File.separator + theFile.getOriginalFilename();
-            File storeFile = new File(signedUrl.toString());
+            //File storeFile = new File(signedUrl.toString());
 
 
                         // saves the file on disk
                         //item.write(storeFile);
-            theFile.transferTo( storeFile );
+            //theFile.transferTo( storeFile );
             System.out.println("reached here");
             s3ServiceImpl.uploadFile(key, dest);
 
