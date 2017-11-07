@@ -33,14 +33,14 @@ deploy:
     secret_access_key: 
       secure: "W1JFaalmUYtEWJiNmvaQn2kViELhSi9CZLflP7m3hdkMpGPGWUwz4cn5nfu6zEo4I89Rwxk/i4ZG/GD6RUPF8jsbioVe35ZkS8iZkehUmSyPqjk+Z1HKeJQ96Z/TZXJArLbcgXGtJ1bShINSzgC2DK3ofyfXYGEnlkEazAULCtzNJ6cl7RRflcbroCpb1nNoVxCugxzLZAWYnRRzbLIFNE0QSP/rJzXjCUgr7z5acwjpnYmjtS2GAEDNXlJ0F8a0BqBhC4265LvI+vFUVb7PkLLdklUkFK/rxBIua73e1wngL6X7gCKE1KOkM9+tjx7mSnuVCzk77kRGRn7JhajLpwPMyFJhEyYdZ7svMcJBv1XrKSvgeBO5tEOqcIBZG8r7JMm+Z9UhY80WAn6EO60I610fvVftd0pccX772+sumgQdRIPQo5H2jWEnAB9Nj1XlW4/kaip6z5WeevJH+2beIp9X0IgKyijpyvCPEKGjMajCflrt6bIwAwQDYtXkm/6GVRLz2JzO4fIETZ2OBx5DsLCSDHETNV4hpIWvgVcCtTy8sk5G5P8tY1os1fa22ipOjsIShCFz+T04KVJIg0ousjNEbzYwKTavHTQ/ivAKy6634qIz6DzgqrgXt+Tx5JfzMcOjFEGmcfAgYpHXx3TbAAkNa066pqV1MKEI5h0xN0A="
     local_dir: codedeploy
-    bucket: csye6225-fall2017-sharmaj.me.csye6225.com
+    bucket: csye6225-surabhi
     region: us-east-1
     skip_cleanup: true
     
 
   - provider: codedeploy
     access_key_id: AKIAIZLMQV2WX45QNHMQ
-    bucket: csye6225-fall2017-sharmaj.me.csye6225.com
+    bucket: csye6225-surabhi
     key: csye6225-spring-boot-starter-webapp-master.zip
     bundle_type: zip
     application: SimpleJavaProject
