@@ -165,6 +165,7 @@ public class FileAttachmentController {
             String filePath2 = realPathtoUploads + orgName;
 
             File dest = new File(filePath2);
+            theFile.transferTo(dest);
             String key = Instant.now().getEpochSecond() + "_" + dest.getName();
             GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, key);
             generatePresignedUrlRequest.setMethod(HttpMethod.GET);
