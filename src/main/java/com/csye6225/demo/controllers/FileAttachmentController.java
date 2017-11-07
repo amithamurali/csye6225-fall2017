@@ -150,16 +150,21 @@ public class FileAttachmentController {
         //String uploadPath = getServletContext().getRealPath("")+ File.separator + UPLOAD_DIRECTORY;
 
         // creates the directory if it does not exist
-        File uploadDir = new File("/home/surabhi/Documents/NSCC/Assignment 6 file upload");
-        if (!uploadDir.exists()) {
-            uploadDir.mkdir();
+        //File uploadDir = new File("/home/surabhi/Documents/NSCC/Assignment 6 file upload");
+        String uploadsDir = "/uploads/";
+        String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
+        if (!new File(realPathtoUploads).exists()) {
+            new File(realPathtoUploads).mkdir();
         }
 
         try {
             // parses the request's content to extract file data
 
 
-            File dest = new File("/home/surabhi/Documents/NSCC/Assignment 6 file upload" + theFile.getOriginalFilename());
+            String orgName = theFile.getOriginalFilename();
+            String filePath2 = realPathtoUploads + orgName;
+
+            File dest = new File(filePath2);
             String key = Instant.now().getEpochSecond() + "_" + dest.getName();
             GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, key);
             generatePresignedUrlRequest.setMethod(HttpMethod.GET);
