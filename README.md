@@ -30,7 +30,6 @@ Instructions to run unit, integration and/or load tests.
  * Prereq: Application should be up and running.
  * Right click the test folder under the project src folder and select "Run all tests with coverage".
 
-
 ## Jmeter tests
 * Create a test plan
 * Add thread group
