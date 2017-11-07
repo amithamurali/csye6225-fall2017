@@ -26,7 +26,7 @@ Build and Deploy instructions for web application.
 			  2) $ curl -u user:password http://localhost:8080
 
 Instructions to run unit, integration and/or load tests.
- ## To run the unit tests (created using Rest Assured framework) locally
+## To run the unit tests (created using Rest Assured framework) locally
  * Prereq: Application should be up and running.
  * Right click the test folder under the project src folder and select "Run all tests with coverage".
 
