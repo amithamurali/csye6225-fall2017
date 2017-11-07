@@ -179,6 +179,7 @@ public class FileAttachmentController {
                         // saves the file on disk
                         //item.write(storeFile);
             theFile.transferTo( storeFile );
+
             s3ServiceImpl.uploadFile(key, dest);
 
                         request.setAttribute("message",
