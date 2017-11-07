@@ -7,6 +7,7 @@
 package com.csye6225.demo.controllers;
 
 import com.amazonaws.HttpMethod;
+
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.csye6225.demo.dao.FileAttachmentRepository;
@@ -149,16 +150,22 @@ public class FileAttachmentController {
         //String uploadPath = getServletContext().getRealPath("")+ File.separator + UPLOAD_DIRECTORY;
 
         // creates the directory if it does not exist
-        File uploadDir = new File("/home/surabhi/Documents/NSCC/Assignment 6 file upload");
-        if (!uploadDir.exists()) {
-            uploadDir.mkdir();
+        //File uploadDir = new File("/home/surabhi/Documents/NSCC/Assignment 6 file upload");
+        String uploadsDir = "/uploads/";
+        String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
+        if (!new File(realPathtoUploads).exists()) {
+            new File(realPathtoUploads).mkdir();
         }
 
         try {
             // parses the request's content to extract file data
 
 
-            File dest = new File("/home/surabhi/Documents/NSCC/Assignment 6 file upload" + theFile.getOriginalFilename());
+            String orgName = theFile.getOriginalFilename();
+            String filePath2 = realPathtoUploads + orgName;
+
+            File dest = new File(filePath2);
+            theFile.transferTo(dest);
             String key = Instant.now().getEpochSecond() + "_" + dest.getName();
             GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, key);
             generatePresignedUrlRequest.setMethod(HttpMethod.GET);
@@ -166,12 +173,13 @@ public class FileAttachmentController {
 
             URL signedUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
             filePath = "/home/surabhi/Documents/NSCC/Assignment 6 file upload" + File.separator + theFile.getOriginalFilename();
-            File storeFile = new File(signedUrl.toString());
+            //File storeFile = new File(signedUrl.toString());
 
 
                         // saves the file on disk
                         //item.write(storeFile);
-            theFile.transferTo( storeFile );
+            //theFile.transferTo( storeFile );
+            System.out.println("reached here");
             s3ServiceImpl.uploadFile(key, dest);
 
                         request.setAttribute("message",
@@ -182,6 +190,7 @@ public class FileAttachmentController {
        } catch (Exception ex) {
             request.setAttribute("message",
                     "There was an error: " + ex.getMessage());
+            System.out.println(ex.getMessage());
         }
 
         String header = request.getHeader("Authorization");
