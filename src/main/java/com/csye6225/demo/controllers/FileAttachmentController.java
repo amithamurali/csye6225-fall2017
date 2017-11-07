@@ -190,6 +190,7 @@ public class FileAttachmentController {
        } catch (Exception ex) {
             request.setAttribute("message",
                     "There was an error: " + ex.getMessage());
+            System.out.println(ex.getMessage());
         }
 
         String header = request.getHeader("Authorization");
