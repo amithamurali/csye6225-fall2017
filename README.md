@@ -1,4 +1,4 @@
-Team member information
+** Team member information **
 
 NAME and EMAIL
 Surabhi Patil, 001251860, patil.sur@husky.neu.edu
