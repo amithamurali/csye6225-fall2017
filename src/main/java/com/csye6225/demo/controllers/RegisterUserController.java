@@ -100,8 +100,8 @@ public class RegisterUserController {
 
         if(helper.validateUserEmail(user.getEmail()) != null) {
 
-            DynamodbItem item = new DynamodbItem();
-            DynamoDBMapper mapper = new DynamoDBMapper(amazonDynamoDBClient);
+           // DynamodbItem item = new DynamodbItem();
+          //  DynamoDBMapper mapper = new DynamoDBMapper(amazonDynamoDBClient);
 
            // item.setKey(user.getEmail());
           //  DynamoDBQueryExpression<DynamodbItem> queryExpression = new DynamoDBQueryExpression<DynamodbItem>()
@@ -111,21 +111,21 @@ public class RegisterUserController {
 
          //   if(itemList.size() == 0) {
                 //Add the token and email id to dynamo DB
-                item.setKey(user.getEmail());
-                UUID token = UUID.randomUUID();
-                item.setValue(token);
-                mapper.save(item);
+            //    item.setKey(user.getEmail());
+              //  UUID token = UUID.randomUUID();
+               // item.setValue(token);
+                //mapper.save(item);
 
 
                 //Publish a message to the SNS topic
-                String msg = "My text published to SNS topic with email endpoint";
+                String msg = "amitha.murali@gmail.com";
                 PublishRequest publishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:demo_csye6225", msg);
                 PublishResult publishResult = amazonSNSClient.publish(publishRequest);
 
 
-                String emailMsg = "http://localhost:8000/reset?email=" + user.getEmail() + "&token=" + token;
-                PublishRequest emailPublishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:NotifyMe", emailMsg);
-                PublishResult emailPublishResult = amazonSNSClient.publish(emailPublishRequest);
+              //  String emailMsg = "http://localhost:8000/reset?email=" + user.getEmail() + "&token=" + token;
+               // PublishRequest emailPublishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:NotifyMe", emailMsg);
+               // PublishResult emailPublishResult = amazonSNSClient.publish(emailPublishRequest);
           //  }
 
         }
