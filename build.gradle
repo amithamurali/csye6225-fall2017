@@ -52,8 +52,15 @@ dependencies {
 
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.218'
-    
+    //compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.218'
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-sns', version: '1.11.126'
+
+    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-core
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-core', version: '1.11.218'
+
+    //compile group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.226'
+    compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.227'
+
     compile('org.apache.commons:commons-lang3:+')
     compile('com.google.guava:guava:+')
     compile('org.apache.httpcomponents:httpclient:+')
