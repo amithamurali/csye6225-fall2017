@@ -418,7 +418,11 @@
 	"S3Bucket" : {
 	 "Type": "AWS::S3::Bucket",
 	"Properties" : {
+<<<<<<< HEAD
 	"BucketName" : "csye6225-fall2017-sharmaj.me.csye6225.com"}
+=======
+	"BucketName" : "csye6225-fall2017-muralia.me.csye6225.com"}
+>>>>>>> upstream/master
 	},
 
 
