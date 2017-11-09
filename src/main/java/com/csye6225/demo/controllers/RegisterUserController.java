@@ -7,6 +7,7 @@
 package com.csye6225.demo.controllers;
 
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,6 +28,13 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.PublishResult;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.csye6225.demo.dao.DynamodbItem;
+
+import java.util.List;
+import java.util.UUID;
 
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="/user") // This means URL's start with /user (after Application path)
@@ -83,17 +91,43 @@ public class RegisterUserController {
     @Autowired
     private AmazonSNSClient amazonSNSClient;
 
+    @Autowired
+    private AmazonDynamoDB amazonDynamoDBClient;
+
+
     @RequestMapping(value="/resetpassword",method=RequestMethod.POST,produces="application/json")
     public @ResponseBody String resetPassword (@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
 
         if(helper.validateUserEmail(user.getEmail()) != null) {
 
-            String msg = "My text published to SNS topic with email endpoint";
-            PublishRequest publishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:demo_csye6225", msg);
-            PublishResult publishResult = amazonSNSClient.publish(publishRequest);
+           // DynamodbItem item = new DynamodbItem();
+          //  DynamoDBMapper mapper = new DynamoDBMapper(amazonDynamoDBClient);
 
-            //print MessageId of message published to SNS topic
-           // System.out.println("MessageId - " + publishResult.getMessageId());
+           // item.setKey(user.getEmail());
+          //  DynamoDBQueryExpression<DynamodbItem> queryExpression = new DynamoDBQueryExpression<DynamodbItem>()
+           //         .withHashKeyValues(item);
+
+           // List<DynamodbItem> itemList = mapper.query(DynamodbItem.class, queryExpression);
+
+         //   if(itemList.size() == 0) {
+                //Add the token and email id to dynamo DB
+            //    item.setKey(user.getEmail());
+              //  UUID token = UUID.randomUUID();
+               // item.setValue(token);
+                //mapper.save(item);
+
+
+                //Publish a message to the SNS topic
+                String msg = "amitha.murali@gmail.com";
+                PublishRequest publishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:demo_csye6225", msg);
+                PublishResult publishResult = amazonSNSClient.publish(publishRequest);
+
+
+              //  String emailMsg = "http://localhost:8000/reset?email=" + user.getEmail() + "&token=" + token;
+               // PublishRequest emailPublishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:NotifyMe", emailMsg);
+               // PublishResult emailPublishResult = amazonSNSClient.publish(emailPublishRequest);
+          //  }
+
         }
 
         JsonObject jsonObject = new JsonObject();
