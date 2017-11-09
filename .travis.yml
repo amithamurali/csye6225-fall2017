@@ -1,20 +1,24 @@
 language: java
 jdk:
-- oraclejdk8
+  - oraclejdk8
+
 sudo: false
 install: true
+
 script:
-- "./gradlew build"
+  - ./gradlew war
+  - ./gradlew test
 
-
-
+notifications:
+  email:
+    recipients:
+      - sharma.j@husky.neu.edu
 
 after_success:
-  - pwd
   - mkdir codedeploy
-  - zip -r csye6225-spring-boot-starter-webapp-master.zip build/libs/ROOT.war appspec.yml ./restartTomcat.sh
+  - zip -r SimpleJavaProject-${TRAVIS_JOB_NUMBER}.zip build/libs/Root.war appspec.yml
   - ls -al
-  - mv csye6225-spring-boot-starter-webapp-master.zip codedeploy/
+  - mv SimpleJavaProject-${TRAVIS_JOB_NUMBER}.zip codedeploy/
   - ls -al
   - pwd
   - cd codedeploy
@@ -23,39 +27,13 @@ after_success:
 
 before_deploy:
   - cd ..
-  - pwd
-  
-  
 
 deploy:
   - provider: s3
-    access_key_id: AKIAIDQOT7SGAR76DL2Q
+    access_key_id: AKIAIUZLVF7ZPZTBUC5Q
     secret_access_key:
-      secure: "zphpiBHBPkRrTNnpPPiQbQ9IBVj5oA0t6y2jgU+Zq8J0+jUAifoODwNc0gv+Ho4SP7PlJs04fTbzb0lcgfW+rY5jXY0fgoQhF+/mqDPoYd7/Wb8l9p/GeOndE7EmGmuI41ujbVo/Ix9O7DPxzTJtE8I6pd4kRSYopYwHvQ1uSoN7cfkSlDFVmn0UKDho4MNF2Ix630NJqmethHLNb3LsPSIlgrbnUXP8g4g9DFVLOdPcU3uqTW2pk+/2JAeR6LIamUV5+8TFnZpWV12hrdHN5y0BB8cR/f6uDdxYSgQO43bzKsbiTKQYRm1cZ/69HQEeOIATUMvo5ZChAtMSmEXGo5L67oiCxvbsSECeYSYgFmezypc5nN+fGwwKjo1M8Me+3sSfAWbNvOqDw6zWuJSFgq3w0CQNzkRfw3Jp2qiC7XmLkVlHdXSgwQftufyxIsFGquIXJXpBaUGJxmUXOaujOD8YXSG27LrhtlneqIJ9tEbp9dBsCBcxqXcWAid6K4PejHp+uDFk8CkPyQAih53vDtLX0tuMbG4eI3pLoAoKcMmQTmjRpBXgGhG1/tregY/HHD2hfq+KVSHkGdj2nToSE2yGCmBYydppHVT6OUHwJMOYGOCQ+IL6/+9xYLlPas9EAfJPX92yMEWHJdI4k2g25CprK7GcmVxZG6HxUb0Sq24="
+      secure: "Rjme1wSx9zYDU4N6ku+K3bHMwgJEksdeIBWkvgncdFFq8jPhdIY1dnyZBI20RSu62STM/lNSV4rgH8ExigNQo4xlf4MOO+I4Sxty9hvX2VcrpSfyvgf0J841rASQx9J8uduNb1iUDNQBHL5pSC9X10whsQbvgoBNbfZKjLcAyFLauOmiOCMWAeXYua92ckQ6NIG15SWjKJG7N8xon6S4G5VVr7NKDBo1lZndXz5JLAO4kSw0TUV/pjNdm5KX1HvCzhsgnUs+z9RNA41CY4nHksAuzibxIifpUFu8LPbANroksUaRqAzai+HbxrRHcrETt5DOb2x77I1/Tw3M1mNwvMLumRDmBFrC77/RdhsafRIXaUjFVYcDAvp1SpcRtS8GWzpyFrKO5HbiIAAVPJZlwKPTl0jOksYEeygn6dJZiuHivHqPiuien3Ox2PPOOKODRNWG6i7dyRsCkWiNCxYHQTZk8OsibtzWMwMDbt3D26/FxkFOsfu0BzULf1uNQ/IQvGsrUVBZca2SikUNwOyb0O750N+313+ZJ2Hr7GOhVK6NJ90/Rxda1e6ATEVHhnV4mKPNba7LbrO5OkTnw/+OuOBlEN+VGFB+sfgyfklGs3Nu2JFX2aMIhPqNW2mpiYpBptrwywreZmzySxHaPso5gafZduqrHFdAPg3zkZrb91k="
     local_dir: codedeploy
-    bucket: csye6225-fall2017-sharmaj.me.csye6225.com
+    bucket: code-deploy.csye6225-fall2017-muralia.me
     region: us-east-1
     skip_cleanup: true
-
-
-  - provider: codedeploy
-    access_key_id: AKIAIDQOT7SGAR76DL2Q
-    bucket: csye6225-fall2017-sharmaj.me.csye6225.com
-    key: csye6225-spring-boot-starter-webapp-master.zip
-    bundle_type: zip
-    application: SimpleJavaProject
-    deployment_group: SimpleJavaProject
-    region: us-east-1
-    secret_access_key:
-      secure: "zphpiBHBPkRrTNnpPPiQbQ9IBVj5oA0t6y2jgU+Zq8J0+jUAifoODwNc0gv+Ho4SP7PlJs04fTbzb0lcgfW+rY5jXY0fgoQhF+/mqDPoYd7/Wb8l9p/GeOndE7EmGmuI41ujbVo/Ix9O7DPxzTJtE8I6pd4kRSYopYwHvQ1uSoN7cfkSlDFVmn0UKDho4MNF2Ix630NJqmethHLNb3LsPSIlgrbnUXP8g4g9DFVLOdPcU3uqTW2pk+/2JAeR6LIamUV5+8TFnZpWV12hrdHN5y0BB8cR/f6uDdxYSgQO43bzKsbiTKQYRm1cZ/69HQEeOIATUMvo5ZChAtMSmEXGo5L67oiCxvbsSECeYSYgFmezypc5nN+fGwwKjo1M8Me+3sSfAWbNvOqDw6zWuJSFgq3w0CQNzkRfw3Jp2qiC7XmLkVlHdXSgwQftufyxIsFGquIXJXpBaUGJxmUXOaujOD8YXSG27LrhtlneqIJ9tEbp9dBsCBcxqXcWAid6K4PejHp+uDFk8CkPyQAih53vDtLX0tuMbG4eI3pLoAoKcMmQTmjRpBXgGhG1/tregY/HHD2hfq+KVSHkGdj2nToSE2yGCmBYydppHVT6OUHwJMOYGOCQ+IL6/+9xYLlPas9EAfJPX92yMEWHJdI4k2g25CprK7GcmVxZG6HxUb0Sq24="
-    wait-until-deployed: true
-
-
-
-notifications:
-  email:
-    recipients:
-    - patil.sur@husky.neu.edu
-    - murali.a@husky.neu.edu
-    - sharma.j@husky.neu.edu
-    on_success: always
