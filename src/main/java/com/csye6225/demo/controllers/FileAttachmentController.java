@@ -56,9 +56,6 @@ public class FileAttachmentController {
     @Value("${cloud.aws.s3.bucket}")
     private String bucketName;
 
-
-
-
     @Autowired
     private S3ServicesImpl s3ServiceImpl;
 
