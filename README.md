@@ -25,17 +25,9 @@ Build and Deploy instructions for web application.
  In terminal: 1) $ curl http://localhost:8080
 			  2) $ curl -u user:password http://localhost:8080
 
-Instructions to run unit, integration and/or load tests.
- ## To run the unit tests (created using Rest Assured framework) locally
- * Prereq: Application should be up and running.
- * Right click the test folder under the project src folder and select "Run all tests with coverage".
 
-## Jmeter tests
-* Create a test plan
-* Add thread group
-* Set the no of thread and user to 100
-* Add HTTP requests in the thread group
-* Run the test
+Create an SNS topic and lambda function.
+Make changes in your webapp to include SNS client and trigger the lambda function
 
 Link to TravisCI build for the project.
 
