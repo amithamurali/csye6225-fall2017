@@ -52,7 +52,11 @@ dependencies {
 
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
+<<<<<<< HEAD
     //compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.218'
+=======
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.218'
+>>>>>>> 91a7ac80b2687300da43a75c1964903e9b25814b
     compile group: 'com.amazonaws', name: 'aws-java-sdk-sns', version: '1.11.126'
 
     //compile group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.226'
