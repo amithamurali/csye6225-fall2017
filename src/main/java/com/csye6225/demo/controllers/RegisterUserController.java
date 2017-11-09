@@ -21,6 +21,13 @@ import com.csye6225.demo.helpers.Helper;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.sns.AmazonSNSClient;
+import com.amazonaws.services.sns.model.PublishRequest;
+import com.amazonaws.services.sns.model.PublishResult;
+
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="/user") // This means URL's start with /user (after Application path)
 
@@ -72,4 +79,26 @@ public class RegisterUserController {
         // This returns a JSON or XML with the users
         return userRepository.findAll();
     }
-}
+
+    @Autowired
+    private AmazonSNSClient amazonSNSClient;
+
+    @RequestMapping(value="/resetpassword",method=RequestMethod.POST,produces="application/json")
+    public @ResponseBody String resetPassword (@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
+
+        if(helper.validateUserEmail(user.getEmail()) != null) {
+
+            String msg = "My text published to SNS topic with email endpoint";
+            PublishRequest publishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:demo_csye6225", msg);
+            PublishResult publishResult = amazonSNSClient.publish(publishRequest);
+
+            //print MessageId of message published to SNS topic
+           // System.out.println("MessageId - " + publishResult.getMessageId());
+        }
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("message", "Please check your email for a reset link.");
+        return jsonObject.toString();
+    }
+
+    }

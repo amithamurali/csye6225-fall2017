@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf()
         .disable()
         .authorizeRequests()
-        .antMatchers("/","/user/register","/tasks","/tasks/{id}","/tasks/{id}/attachments","/tasks/{id}/attachments/{idAttachments}").permitAll()
+        .antMatchers("/","/user/register","/tasks","/tasks/{id}","/tasks/{id}/attachments","/tasks/{id}/attachments/{idAttachments}","/user/resetpassword").permitAll()
         .anyRequest().authenticated();
 //        .and()
 //        .httpBasic()

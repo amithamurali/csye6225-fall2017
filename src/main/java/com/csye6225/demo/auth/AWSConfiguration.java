@@ -2,9 +2,11 @@ package com.csye6225.demo.auth;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.sns.AmazonSNSClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,5 +34,14 @@ public class AWSConfiguration {
         AmazonS3Client amazonS3Client = new AmazonS3Client(awsCredentials);
         amazonS3Client.setRegion(Region.getRegion(Regions.fromName(region)));
         return amazonS3Client;
+    }
+
+    @Bean
+    public AmazonSNSClient amazonSNSClient(AWSCredentials awsCredentials){
+
+        //create a new SNS client and set endpoint
+        AmazonSNSClient snsClient = new AmazonSNSClient(awsCredentials);
+        snsClient.setRegion(Region.getRegion(Regions.fromName(region)));
+        return snsClient;
     }
 }
