@@ -43,8 +43,8 @@ deploy:
     bucket: csye6225-fall2017-sharmaj.me.csye6225.com
     key: csye6225-spring-boot-starter-webapp-master.zip
     bundle_type: zip
-    application: myProject
-    deployment_group: myProject
+    application: SimpleJavaProject
+    deployment_group: SimpleJavaProject
     region: us-east-1
     secret_access_key:
       secure: "XGLQnF12IBMBZ49fdrgyk9gbSOxg+J0MkBd4QD2DjM6ur69fyiN2GYJLgEubgttC/B9+LD7bdtbrrCLRGOP0WMLm8rAUiVnsU+IE0pg6ZtQJ63VxgiLhQC1zGPxhi+wYExz8KaTA974CXx/WlLAMPjUBMc/aMWqxfYSwp4iVqwUJUTuZ26mAMGmDcLVx/cmQSwjInAxHoImMGS8JZxzc/R3ZJvJItqX7U1QwQU7qwhhZcukVN+4JtHKHg0f6zmSibfGdHPZc+V8oDqFDtJAltmf++Nk9DE0rEFZ/P/trAKpQE3zQqAA26RobN5dIH8/CARHCM+YdAi1LmG0AEUny3SjvIeqQCckDPMFWZ0JWpzytMfq904tZDxtpIAAIFEbA37YaGfXRdsc3RPi2jK6zeEeh1kVSNhL5m6AFBv7Fwk7a9i31gvH7x2Kw29xWknFW4CWvH571YNZiOmGLv6BSLH1gOfPyHQJ5d8rukxLCLfGuw7PzqDZS4E6dJ7nTulaykz9q6FLOjGKGnbsY8SdUw/QCn63qPhS2j0CaYR2z5pVQyYJo+nbo/uHV9kPoJV4D3te2wscj6H9TSjJp9Ws2jbfQACpgczKnZyD5j8x6Vb9FQhbTsPgnUGYqRbKdEBqO4Nnk08Ad2M7azKQ+YJPujzHST+toZ6uCLNlrcARk+rM="
