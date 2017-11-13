@@ -469,22 +469,29 @@
             "Path":"/"
          }
       },
-      "AWSLambdaRole":{
+      "AWSLambdaRolePolicy":{
          "Type":"AWS::IAM::Policy",
          "Properties":{
-            "PolicyName":"AWSLambdaBasicExecutionRole",
+            "PolicyName":"AWSLambdaBasicExecutionRolePolicy",
             "PolicyDocument":{
                "Version": "2012-10-17",
 				"Statement": [
 					{
-						"Effect": "Allow",
-						"Action": [
-							"logs:CreateLogGroup",
-							"logs:CreateLogStream",	
-							"logs:PutLogEvents"
-						],
-						"Resource": "*"
-					}
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+					{
+            "Effect": "Allow",
+            "Action": [
+                "ses:*"
+            ],
+            "Resource": "*"
+        }
 				]
             },
             "Roles":[
