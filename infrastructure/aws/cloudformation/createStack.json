@@ -418,7 +418,7 @@
 	"S3Bucket" : {
 	 "Type": "AWS::S3::Bucket",
 	"Properties" : {
-	"BucketName" : "csye6225-fall2017-sharmaj.me.csye6225.com"}
+	"BucketName" : "csye6225-fall2017-muralia.me.csye6225.com"}
 	},
 
 
@@ -439,61 +439,7 @@
     "MultiAZ" : "FALSE",
     "PubliclyAccessible" : "FALSE"
     }
-},
-		"MySNSTopic" : {
-		   "Type" : "AWS::SNS::Topic",
-		   "Properties" : {
-			  "DisplayName" : "SampleDisplayTopic",
-			  "TopicName" : "SampleTopic"
-		   }
-		},
-		"Assgn8Role":{
-         "Type":"AWS::IAM::Role",
-         "Properties":{
-            "AssumeRolePolicyDocument":{
-               "Version":"2012-10-17",
-               "Statement":[
-                  {
-                     "Effect":"Allow",
-                     "Principal":{
-                        "Service":[
-                           "lambda.amazonaws.com"
-                        ]
-                     },
-                     "Action":[
-                        "sts:AssumeRole"
-                     ]
-                  }
-               ]
-            },
-            "Path":"/"
-         }
-      },
-      "AWSLambdaRole":{
-         "Type":"AWS::IAM::Policy",
-         "Properties":{
-            "PolicyName":"AWSLambdaBasicExecutionRole",
-            "PolicyDocument":{
-               "Version": "2012-10-17",
-				"Statement": [
-					{
-						"Effect": "Allow",
-						"Action": [
-							"logs:CreateLogGroup",
-							"logs:CreateLogStream",	
-							"logs:PutLogEvents"
-						],
-						"Resource": "*"
-					}
-				]
-            },
-            "Roles":[
-               {
-                  "Ref":"Assgn8Role"
-               }
-            ]
-         }
-      }
+}
 	}
 }
 

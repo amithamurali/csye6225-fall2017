@@ -1,11 +1,9 @@
-** Team member information
+Team member information
 
 NAME and EMAIL
 Surabhi Patil, 001251860, patil.sur@husky.neu.edu
 Amitha_Murali, 001643826, murali.a@husky.neu.edu
 Jyoti Sharma, 001643410, sharma.j@husky.neu.edu
-
-
 
 
 Prerequisites for building and deploying your application locally.
