@@ -5,9 +5,14 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.sns.AmazonSNSClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.regions.Regions;
 
 @Configuration
 public class AWSConfiguration {
@@ -32,5 +37,21 @@ public class AWSConfiguration {
         AmazonS3Client amazonS3Client = new AmazonS3Client(awsCredentials);
         amazonS3Client.setRegion(Region.getRegion(Regions.fromName(region)));
         return amazonS3Client;
+    }
+
+    @Bean
+    public AmazonSNSClient amazonSNSClient(AWSCredentials awsCredentials) {
+        AmazonSNSClient snsClient = new AmazonSNSClient(awsCredentials);
+        snsClient.setRegion(Region.getRegion(Regions.fromName(region)));
+        return snsClient;
+    }
+
+    @Bean
+    public AmazonDynamoDB amazonDynamoDBClient(AWSCredentials awsCredentials){
+
+        // This client will default to US West (Oregon)
+        AmazonDynamoDB dynamoDBclient = new AmazonDynamoDBClient(awsCredentials);
+        //dynamoDBclient.withRegion(Regions.fromName(region)).build();
+        return dynamoDBclient;
     }
 }
