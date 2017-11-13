@@ -55,7 +55,7 @@ deploy:
 notifications:
   email:
     recipients:
+    - patil.sur@husky.neu.edu
     - murali.a@husky.neu.edu
     - sharma.j@husky.neu.edu
-    - patil.sur@husky.neu.edu
     on_success: always

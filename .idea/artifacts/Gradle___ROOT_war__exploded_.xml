@@ -30,11 +30,7 @@
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sns:1.11.126" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk:1.11.227" />
           <element id="library" level="project" name="Gradle: org.apache.commons:commons-lang3:3.7" />
-<<<<<<< HEAD
           <element id="library" level="project" name="Gradle: com.google.guava:guava:23.4-jre" />
-=======
-          <element id="library" level="project" name="Gradle: com.google.guava:guava:23.3-jre" />
->>>>>>> cc14f2b2d3df4619ae22a48c357cf8e8333dc7c0
           <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.5.3" />
           <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.8.1" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter:1.5.6.RELEASE" />
@@ -83,13 +79,6 @@
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-simpleworkflow:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-storagegateway:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-route53:1.11.227" />
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-          <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-s3:1.11.227" />
-=======
->>>>>>> 1f435e01b11b6cf02f29478dd813885cc37c63ae
->>>>>>> cc14f2b2d3df4619ae22a48c357cf8e8333dc7c0
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-importexport:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sts:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-rds:1.11.227" />
@@ -124,14 +113,7 @@
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-cloudwatchmetrics:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-codedeploy:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-codepipeline:1.11.227" />
-<<<<<<< HEAD
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.11.227" />
-=======
-<<<<<<< HEAD
-          <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.11.227" />
-=======
->>>>>>> 1f435e01b11b6cf02f29478dd813885cc37c63ae
->>>>>>> cc14f2b2d3df4619ae22a48c357cf8e8333dc7c0
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-config:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-lambda:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-ecs:1.11.227" />
@@ -212,31 +194,13 @@
           <element id="library" level="project" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.25" />
           <element id="library" level="project" name="Gradle: org.apache.tomcat:tomcat-juli:8.5.16" />
           <element id="library" level="project" name="Gradle: ch.qos.logback:logback-core:1.1.11" />
-<<<<<<< HEAD
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.11.227" />
           <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.11.227" />
-=======
-<<<<<<< HEAD
-          <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.11.227" />
-=======
-          <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.11.227" />
->>>>>>> 1f435e01b11b6cf02f29478dd813885cc37c63ae
->>>>>>> cc14f2b2d3df4619ae22a48c357cf8e8333dc7c0
           <element id="library" level="project" name="Gradle: software.amazon.ion:ion-java:1.0.2" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.8.9" />
           <element id="library" level="project" name="Gradle: joda-time:joda-time:2.9.9" />
           <element id="library" level="project" name="Gradle: com.amazonaws:jmespath-java:1.11.227" />
-<<<<<<< HEAD
           <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.11.218/c4f647aa2fc82313e283d5d22225c05d8d59f03f/aws-java-sdk-s3-1.11.218.jar" />
-=======
-<<<<<<< HEAD
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.11.218/118bdaf55a94776b1fba0fb67cbcacbdfb03c53c/aws-java-sdk-core-1.11.218.jar" />
-=======
-          <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-sqs:1.11.227" />
-          <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.11.227" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-s3/1.11.227/fffec9f451973c67f8f93c6e20b6a6ac22061b28/aws-java-sdk-s3-1.11.227.jar" />
->>>>>>> 1f435e01b11b6cf02f29478dd813885cc37c63ae
->>>>>>> cc14f2b2d3df4619ae22a48c357cf8e8333dc7c0
         </element>
       </element>
     </root>
