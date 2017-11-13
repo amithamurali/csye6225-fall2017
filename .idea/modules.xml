@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Assignment_8.iml" filepath="$PROJECT_DIR$/.idea/modules/Assignment_8.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Assignment_8_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Assignment_8_main.iml" group="Assignment_8" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Assignment_8_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Assignment_8_test.iml" group="Assignment_8" />
-      <module fileurl="file://$PROJECT_DIR$/csye6225-fall2017-1.iml" filepath="$PROJECT_DIR$/csye6225-fall2017-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1.iml" filepath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_main.iml" filepath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_main.iml" group="csye6225-fall2017-1" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_test.iml" filepath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017-1_test.iml" group="csye6225-fall2017-1" />
     </modules>
   </component>
 </project>
