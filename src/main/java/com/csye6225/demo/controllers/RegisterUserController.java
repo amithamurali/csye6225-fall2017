@@ -7,6 +7,7 @@
 package com.csye6225.demo.controllers;
 
 
+import com.amazonaws.auth.InstanceProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,10 +119,15 @@ public class RegisterUserController {
 
 
                 //Publish a message to the SNS topic
+            AmazonSNSClient sns = new AmazonSNSClient(new InstanceProfileCredentialsProvider());
+            String topic = sns.createTopic("password_reset").getTopicArn();
+
+            PublishRequest publishRequest = new PublishRequest(topic, user.getEmail());
+            PublishResult publishResult = amazonSNSClient.publish(publishRequest);
                 String msg = user.getEmail();
                 System.out.print( msg );
-                PublishRequest publishRequest = new PublishRequest("arn:aws:sns:us-east-1:182802895791:SampleTopic", msg);
-                PublishResult publishResult = amazonSNSClient.publish(publishRequest);
+                //PublishRequest publishRequest = new PublishRequest("arn:aws:sns:us-east-1:182802895791:SampleTopic", msg);
+                //PublishResult publishResult = amazonSNSClient.publish(publishRequest);
 
 
               //  String emailMsg = "http://localhost:8000/reset?email=" + user.getEmail() + "&token=" + token;
