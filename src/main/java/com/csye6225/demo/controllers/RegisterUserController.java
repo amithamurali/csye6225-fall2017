@@ -119,7 +119,7 @@ public class RegisterUserController {
 
                 //Publish a message to the SNS topic
                 String msg = "amitha.murali@gmail.com";
-                PublishRequest publishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:SampleTopic", msg);
+                PublishRequest publishRequest = new PublishRequest("arn:aws:sns:us-east-1:306856603029:demo_csye6225", msg);
                 PublishResult publishResult = amazonSNSClient.publish(publishRequest);
 
 
