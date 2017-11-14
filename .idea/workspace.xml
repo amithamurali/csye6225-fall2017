@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33b46c0f-0ea6-4d44-8d06-31ee1fe18ecc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -61,9 +60,11 @@
       <file leaf-file-name="RegisterUserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="132" column="51" lean-forward="false" selection-start-line="132" selection-start-column="51" selection-end-line="132" selection-end-column="51" />
-              <folding />
+            <state relative-caret-position="156">
+              <caret line="119" column="52" lean-forward="true" selection-start-line="119" selection-start-column="52" selection-end-line="119" selection-end-column="52" />
+              <folding>
+                <marker date="1510689366046" expanded="true" signature="4705:5259" ph="//..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -885,12 +886,12 @@
       <workItem from="1510029958925" duration="271000" />
       <workItem from="1510074090775" duration="7606000" />
       <workItem from="1510598482348" duration="7424000" />
-      <workItem from="1510687141485" duration="1613000" />
+      <workItem from="1510687141485" duration="2217000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18794000" />
+    <option name="totallyTimeSpent" value="19398000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="292" y="44" width="1311" height="675" extended-state="6" />
@@ -983,7 +984,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1815">
           <caret line="121" column="37" lean-forward="false" selection-start-line="121" selection-start-column="37" selection-end-line="121" selection-end-column="37" />
-          <folding />
+          <folding>
+            <marker date="1510689366046" expanded="true" signature="4705:5259" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1032,7 +1035,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1620">
           <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1510689366046" expanded="true" signature="4705:5259" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1087,7 +1092,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
           <caret line="121" column="114" lean-forward="false" selection-start-line="121" selection-start-column="114" selection-end-line="121" selection-end-column="114" />
-          <folding />
+          <folding>
+            <marker date="1510689366046" expanded="true" signature="4705:5259" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1222,9 +1229,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/csye6225/demo/controllers/RegisterUserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="132" column="51" lean-forward="false" selection-start-line="132" selection-start-column="51" selection-end-line="132" selection-end-column="51" />
-          <folding />
+        <state relative-caret-position="156">
+          <caret line="119" column="52" lean-forward="true" selection-start-line="119" selection-start-column="52" selection-end-line="119" selection-end-column="52" />
+          <folding>
+            <marker date="1510689366046" expanded="true" signature="4705:5259" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
