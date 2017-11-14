@@ -439,7 +439,69 @@
     "MultiAZ" : "FALSE",
     "PubliclyAccessible" : "FALSE"
     }
-}
+},
+		"MySNSTopic" : {
+		   "Type" : "AWS::SNS::Topic",
+		   "Properties" : {
+			  "DisplayName" : "SampleDisplayTopic",
+			  "TopicName" : "SampleTopic"
+		   }
+		},
+		"Assgn8Role":{
+         "Type":"AWS::IAM::Role",
+         "Properties":{
+            "AssumeRolePolicyDocument":{
+               "Version":"2012-10-17",
+               "Statement":[
+                  {
+                     "Effect":"Allow",
+                     "Principal":{
+                        "Service":[
+                           "lambda.amazonaws.com"
+                        ]
+                     },
+                     "Action":[
+                        "sts:AssumeRole"
+                     ]
+                  }
+               ]
+            },
+            "Path":"/"
+         }
+      },
+      "AWSLambdaRolePolicy":{
+         "Type":"AWS::IAM::Policy",
+         "Properties":{
+            "PolicyName":"AWSLambdaBasicExecutionRolePolicy",
+            "PolicyDocument":{
+               "Version": "2012-10-17",
+				"Statement": [
+					{
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+					{
+            "Effect": "Allow",
+            "Action": [
+                "ses:*"
+            ],
+            "Resource": "*"
+        }
+				]
+            },
+            "Roles":[
+               {
+                  "Ref":"Assgn8Role"
+               }
+            ]
+         }
+      }
 	}
 }
+
 
