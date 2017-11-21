@@ -144,7 +144,18 @@
                      ],
                      "Effect":"Allow",
                      "Resource":"*"
-                  }
+                  },
+		{
+			"Effect": "Allow",
+                          "Action": [
+					"logs:CreateLogGroup",
+					"logs:CreateLogStream",
+					"logs:PutLogEvents",
+					"logs:DescribeLogStreams"
+			 ],
+			"Resource": "arn:aws:logs:*:*:*"
+		}
+
                ]
             },
             "Roles":[
@@ -240,6 +251,84 @@
 
         "EC2Instance": {
             "Type": "AWS::EC2::Instance",
+	"Metadata" : { 
+	"AWS::CloudFormation::Init": {
+                    "config": {
+                        "packages": {
+                            "yum": {
+                                "httpd": []
+                            }
+                        },
+                        "files": {
+                            "/tmp/cwlogs/apacheaccess.conf": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "[general]\n",
+                                            "state_file= /var/awslogs/agent-state\n",
+                                            "[/var/log/httpd/access_log]\n",
+                                            "file = /var/log/httpd/access_log\n",
+                                            "log_group_name = ", {"Ref": "WebServerLogGroup"}, "\n",
+                                            "log_stream_name = {instance_id}/apache.log\n",
+                                            "datetime_format = %d/%b/%Y:%H:%M:%S"
+                                        ]
+                                    ]
+                                },
+                                "mode": "000400",
+                                "owner": "apache",
+                                "group": "apache"
+                            },
+                            "/etc/cfn/cfn-hup.conf": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "[main]\n",
+                                            "stack=",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            },
+                                            "\n",
+                                            "region=",
+                                            {
+                                                "Ref": "AWS::Region"
+                                            },
+                                            "\n"
+                                        ]
+                                    ]
+                                },
+                                "mode": "000400",
+                                "owner": "root",
+                                "group": "root"
+                            },
+                            "/etc/cfn/hooks.d/cfn-auto-reloader.conf": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "[cfn-auto-reloader-hook]\n",
+                                            "triggers=post.update\n",
+                                            "path=Resources.WebServerHost.Metadata.AWS::CloudFormation::Init\n",
+                                            "action=/opt/aws/bin/cfn-init -s ",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            },
+                                            " -r WebServerHost ",
+                                            " --region     ",
+                                            {
+                                                "Ref": "AWS::Region"
+                                            },
+                                            "\n",
+                                            "runas=root\n"
+                                        ]
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+},
             "Properties": {
 	"IamInstanceProfile" : {
 		"Ref":"insProfile"			
@@ -296,10 +385,28 @@
 				"cd /home/ubuntu \n",
 				"curl -O https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install \n",
 				"chmod +x ./install \n",
-				"./install auto"
-				
-				
-				
+				"./install auto \n",
+
+
+
+
+
+				"# Get the latest CloudFormation package\n",
+                                "yum install -y aws-cfn-bootstrap\n",
+				"sudo apt install yum -y\n",
+				"sudo yum -y install httpd\n",
+				"sudo service httpd start\n",
+				"# Start cfn-init\n",
+                                "/opt/aws/bin/cfn-init -s ", { "Ref": "AWS::StackId" }, " -r EC2Instance ", " --region ", { "Ref": "AWS::Region" },
+                                " || error_exit 'Failed to run cfn-init'\n",
+                                
+                                "# Start up the cfn-hup daemon to listen for changes to the EC2 instance metadata\n",
+                                "/opt/aws/bin/cfn-hup || error_exit 'Failed to start cfn-hup'\n",
+ 				"# Get the CloudWatch Logs agent\n",
+                                "wget https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py\n",
+                                
+                                "# Install the CloudWatch Logs agent\n",
+                                "python awslogs-agent-setup.py -n -r ", "us-east-1", " -c /tmp/cwlogs/apacheaccess.conf || error_exit 'Failed to run CloudWatch Logs agent setup'\n"
 		]
 	 	]
 				}
@@ -309,6 +416,12 @@
        
 },
 
+	"WebServerLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+                "RetentionInDays": 7
+            }
+        },
 	"ResourceRecordSet" : {
 	"Type" : "AWS::Route53::RecordSet",
 	"Properties" : {
@@ -503,4 +616,5 @@
       }
 	}
 }
+
 
