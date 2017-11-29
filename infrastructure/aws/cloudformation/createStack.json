@@ -1,109 +1,109 @@
-{  
+{
    "AWSTemplateFormatVersion":"2010-09-09",
    "Description":"Sample CloudFormation Template for CSYE 6225 - Fall 2017",
-   "Parameters":{  
-      "imgId":{  
+   "Parameters":{
+      "imgId":{
          "Description":"imageId",
          "Type":"String"
       },
-      "vpcId":{  
+      "vpcId":{
          "Description":"vpcId",
          "Type":"String"
       },
-      "InstType":{  
+      "InstType":{
          "Description":"Instance type",
          "Type":"String"
       },
-      "volumeSize":{  
+      "volumeSize":{
          "Description":"Volume size",
          "Type":"String"
       },
-      "volumeType":{  
+      "volumeType":{
          "Description":"Volume type",
          "Type":"String"
       },
-      "keyName":{  
+      "keyName":{
          "Description":"keyName",
          "Type":"AWS::EC2::KeyPair::KeyName"
       },
-      "hostedZoneId":{  
+      "hostedZoneId":{
          "Description":"Hosted Zone Id",
          "Type":"String"
       },
-      "dnsName":{  
+      "dnsName":{
          "Description":"DNS name",
          "Type":"String"
       },
-      "recordSetType":{  
+      "recordSetType":{
          "Description":"Record set type",
          "Type":"String"
       },
-      "snapshotId":{  
+      "snapshotId":{
          "Description":"snapshotId",
          "Type":"String"
       },
-      "recordSetTTL":{  
+      "recordSetTTL":{
          "Description":"Record set time to live",
          "Type":"String"
       },
-      "rdsParamUsername":{  
+      "rdsParamUsername":{
          "Description":"database username",
          "Type":"String"
       },
-      "rdsParamPassword":{  
+      "rdsParamPassword":{
          "Description":"database password",
          "Type":"String"
       }
    },
-   "Resources":{  
-      "RDSConnectPolicy":{  
+   "Resources":{
+      "RDSConnectPolicy":{
          "Type":"AWS::IAM::ManagedPolicy",
-         "Properties":{  
-            "PolicyDocument":{  
+         "Properties":{
+            "PolicyDocument":{
                "Version":"2012-10-17",
-               "Statement":[  
-                  {  
+               "Statement":[
+                  {
                      "Sid":"Stmt1508975155000",
                      "Effect":"Allow",
-                     "Action":[  
+                     "Action":[
                         "rds-db:connect"
                      ],
-                     "Resource":[  
+                     "Resource":[
                         "*"
                      ]
                   }
                ]
             },
-            "Users":[  
+            "Users":[
                "dbuser"
             ],
             "ManagedPolicyName":"AWS_RDS_IAM_2"
          }
       },
-      "insProfile":{  
+      "insProfile":{
          "Type":"AWS::IAM::InstanceProfile",
-         "Properties":{  
-            "Roles":[  
-               {  
+         "Properties":{
+            "Roles":[
+               {
                   "Ref":"CodeDeployEC2ServiceRole2"
                }
             ]
          }
       },
-      "CodeDeployEC2ServiceRole2":{  
+      "CodeDeployEC2ServiceRole2":{
          "Type":"AWS::IAM::Role",
-         "Properties":{  
-            "AssumeRolePolicyDocument":{  
+         "Properties":{
+            "AssumeRolePolicyDocument":{
                "Version":"2012-10-17",
-               "Statement":[  
-                  {  
+               "Statement":[
+                  {
                      "Effect":"Allow",
-                     "Principal":{  
-                        "Service":[  
+                     "Principal":{
+                        "Service":[
                            "ec2.amazonaws.com"
                         ]
                      },
-                     "Action":[  
+                     "Action":[
                         "sts:AssumeRole"
                      ]
                   }
@@ -112,24 +112,24 @@
             "Path":"/"
          }
       },
-      "CodeDeployEC2S33":{  
+      "CodeDeployEC2S33":{
          "Type":"AWS::IAM::Policy",
-         "Properties":{  
+         "Properties":{
             "PolicyName":"CodeDeployEC2S33",
-            "PolicyDocument":{  
+            "PolicyDocument":{
                "Version":"2012-10-17",
-               "Statement":[  
-                  {  
-                     "Action":[  
+               "Statement":[
+                  {
+                     "Action":[
                         "s3:Get*",
                         "s3:List*"
                      ],
                      "Effect":"Allow",
                      "Resource":"*"
                   },
-                  {  
+                  {
                      "Effect":"Allow",
-                     "Action":[  
+                     "Action":[
                         "logs:CreateLogGroup",
                         "logs:CreateLogStream",
                         "logs:PutLogEvents",
@@ -141,27 +141,27 @@
                   }
                ]
             },
-            "Roles":[  
-               {  
+            "Roles":[
+               {
                   "Ref":"CodeDeployEC2ServiceRole2"
                }
             ]
          }
       },
-      "CodeDeployServiceRole2":{  
+      "CodeDeployServiceRole2":{
          "Type":"AWS::IAM::Role",
-         "Properties":{  
-            "AssumeRolePolicyDocument":{  
+         "Properties":{
+            "AssumeRolePolicyDocument":{
                "Version":"2012-10-17",
-               "Statement":[  
-                  {  
+               "Statement":[
+                  {
                      "Effect":"Allow",
-                     "Principal":{  
-                        "Service":[  
+                     "Principal":{
+                        "Service":[
                            "ec2.amazonaws.com"
                         ]
                      },
-                     "Action":[  
+                     "Action":[
                         "sts:AssumeRole"
                      ]
                   }
@@ -170,16 +170,16 @@
             "Path":"/"
          }
       },
-      "AWSCodeDeployRole":{  
+      "AWSCodeDeployRole":{
          "Type":"AWS::IAM::Policy",
-         "Properties":{  
+         "Properties":{
             "PolicyName":"AWSCodeDeployRole2",
-            "PolicyDocument":{  
+            "PolicyDocument":{
                "Version":"2012-10-17",
-               "Statement":[  
-                  {  
+               "Statement":[
+                  {
                      "Effect":"Allow",
-                     "Action":[  
+                     "Action":[
                         "autoscaling:CompleteLifecycleAction",
                         "autoscaling:DeleteLifecycleHook",
                         "autoscaling:DescribeAutoScalingGroups",
@@ -224,62 +224,62 @@
                   }
                ]
             },
-            "Roles":[  
-               {  
+            "Roles":[
+               {
                   "Ref":"CodeDeployServiceRole2"
                }
             ]
          }
       },
-      "EC2Instance":{  
+      "EC2Instance":{
          "Type":"AWS::EC2::Instance",
-         "Properties":{  
-            "IamInstanceProfile":{  
+         "Properties":{
+            "IamInstanceProfile":{
                "Ref":"insProfile"
             },
-            "KeyName":{  
+            "KeyName":{
                "Ref":"keyName"
             },
-            "Tags":[  
-               {  
+            "Tags":[
+               {
                   "Key":"name",
                   "Value":"csye6225"
                }
             ],
-            "ImageId":{  
+            "ImageId":{
                "Ref":"imgId"
             },
-            "InstanceType":{  
+            "InstanceType":{
                "Ref":"InstType"
             },
-            "SecurityGroupIds":[  
-               {  
-                  "Fn::GetAtt":[  
+            "SecurityGroupIds":[
+               {
+                  "Fn::GetAtt":[
                      "csye6225webapp",
                      "GroupId"
                   ]
                }
             ],
             "DisableApiTermination":"TRUE",
-            "BlockDeviceMappings":[  
-               {  
+            "BlockDeviceMappings":[
+               {
                   "DeviceName":"/dev/sda1",
-                  "Ebs":{  
+                  "Ebs":{
                      "DeleteOnTermination":true,
-                     "VolumeSize":{  
+                     "VolumeSize":{
                         "Ref":"volumeSize"
                      },
-                     "VolumeType":{  
+                     "VolumeType":{
                         "Ref":"volumeType"
                      }
                   }
                }
             ],
-            "UserData":{  
-               "Fn::Base64":{  
-                  "Fn::Join":[  
+            "UserData":{
+               "Fn::Base64":{
+                  "Fn::Join":[
                      "",
-                     [  
+                     [
                         "#!/bin/bash -v \n",
                         "apt-get update \n",
                         "apt-get install default-jdk -y \n",
@@ -288,17 +288,17 @@
                         "echo 'export JAVA_HOME' >> /etc/environment \n",
                         "source /etc/environment \n",
                         "apt-get install curl -y \n",
-						
-						
+
+
                         "sudo apt-get install tomcat8 -y \n",
                         "echo '#!/bin/sh' >> /usr/share/tomcat8/bin/setenv.sh \n",
-                        {  
-                           "Fn::Join":[  
+                        {
+                           "Fn::Join":[
                               "",
-                              [  
+                              [
                                  "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.url=\"jdbc:mysql://",
-                                 {  
-                                    "Fn::GetAtt":[  
+                                 {
+                                    "Fn::GetAtt":[
                                        "DBInstance",
                                        "Endpoint.Address"
                                     ]
@@ -308,43 +308,40 @@
                            ]
                         },
                         "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.username=\"",
-                        {  
+                        {
                            "Ref":"rdsParamUsername"
                         },
                         "\"\"' >> /usr/share/tomcat8/bin/setenv.sh \n",
                         "echo 'JAVA_OPTS=\"$JAVA_OPTS -Dspring.datasource.password=\"",
-                        {  
+                        {
                            "Ref":"rdsParamPassword"
                         },
                         "\"\"' >> /usr/share/tomcat8/bin/setenv.sh \n",
                         "chmod -R 777 bin/* \n",
-						
-						
+
+
                         "apt-get install ruby -y\n",
                         "cd /home/ubuntu \n",
                         "curl -O https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install \n",
                         "chmod +x ./install \n",
                         "./install auto \n",
-						
-						
-						
+
+
+
                         "apt-get update -y \n",
                         "apt-get install python -y \n",
-		          "echo '[general]' > /tmp/apacheaccess.conf \n",                  
-		          "echo 'state_file= /var/awslogs/state/agent-state' >> /tmp/apacheaccess.conf \n",
-		          "echo '[/var/log/syslog]' >> /tmp/apacheaccess.conf \n",
-		          "echo 'datetime_format = %d/%b/%Y:%H:%M:%S' >> /tmp/apacheaccess.conf \n",
-		          "echo 'file = /var/log/syslog' >> /tmp/apacheaccess.conf \n",
-		       	  "echo 'buffer_duration = 5000' >> /tmp/apacheaccess.conf \n",
-		          "echo 'log_stream_name = test' >> /tmp/apacheaccess.conf \n",
-		          "echo 'initial_position = start_of_file' >> /tmp/apacheaccess.conf \n",
-		          "echo 'log_group_name = \"",{ "Ref":"WebServerLogGroup"},"\"\"' >> /tmp/apacheaccess.conf \n",
-		        
-		        
-                              "wget https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py \n",
-                              "python awslogs-agent-setup.py -n -r ", { "Ref" : "AWS::Region" }, " -c /tmp/apacheaccess.conf || error_exit 'Failed to run CloudWatch Logs agent setup'\n",
-                  "cd /etc/systemd/system \n",
-                        
+		         "curl https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py -O\n",
+			    "chmod +x ./awslogs-agent-setup.py\n",
+			    "echo '[general]' >> /home/ubuntu/awslogs.conf\n",
+			    "echo 'state_file = /var/awslogs/state/agent-state' >> /home/ubuntu/awslogs.conf\n",
+			    "echo '[var/lib/tomcat8/logs]' >> /home/ubuntu/awslogs.conf\n",
+			    "echo 'file = /var/lib/tomcat8/logs/csye6225.log' >> /home/ubuntu/awslogs.conf\n",
+			    "echo 'log_group_name = /var/lib/tomcat8/logs'>> /home/ubuntu/awslogs.conf\n",
+			    "echo 'log_stream_name = {instance_id}' >> /home/ubuntu/awslogs.conf\n",
+			    "echo 'datetime_format = %d/%b/%Y:%H:%M:%S' >> /home/ubuntu/awslogs.conf\n",
+			    "sleep 3\n",
+			    "sudo python awslogs-agent-setup.py -n -r us-east-1 -c awslogs.conf\n",
+
                         "echo '[Unit]' > /etc/systemd/system/awslogs.service \n",
                         "echo 'Description=Service for CloudWatch Logs agent' >> /etc/systemd/system/awslogs.service \n",
                         "echo 'After=rc-local.service' >> /etc/systemd/system/awslogs.service \n",
@@ -359,38 +356,38 @@
 
                         "echo '[Install]' >> /etc/systemd/system/awslogs.service \n",
                         "echo 'WantedBy=multi-user.target' >> /etc/systemd/system/awslogs.service \n",
-            "systemctl start awslogs.service \n"
+            "sudo service awslogs start \n"
                      ]
                   ]
                }
             }
          }
       },
-      "WebServerLogGroup":{  
+      "WebServerLogGroup":{
          "Type":"AWS::Logs::LogGroup",
-         "Properties":{  
+         "Properties":{
             "RetentionInDays":7
          }
       },
-      "ResourceRecordSet":{  
+      "ResourceRecordSet":{
          "Type":"AWS::Route53::RecordSet",
-         "Properties":{  
-            "HostedZoneId":{  
+         "Properties":{
+            "HostedZoneId":{
                "Ref":"hostedZoneId"
             },
             "Comment":"DNS name for my instance.",
-            "Name":{  
+            "Name":{
                "Ref":"dnsName"
             },
-            "Type":{  
+            "Type":{
                "Ref":"recordSetType"
             },
-            "TTL":{  
+            "TTL":{
                "Ref":"recordSetTTL"
             },
-            "ResourceRecords":[  
-               {  
-                  "Fn::GetAtt":[  
+            "ResourceRecords":[
+               {
+                  "Fn::GetAtt":[
                      "EC2Instance",
                      "PublicIp"
                   ]
@@ -398,61 +395,61 @@
             ]
          }
       },
-      "Subnet1":{  
+      "Subnet1":{
          "Type":"AWS::EC2::Subnet",
-         "Properties":{  
-            "VpcId":{  
+         "Properties":{
+            "VpcId":{
                "Ref":"vpcId"
             },
             "CidrBlock":"172.31.128.0/20",
             "AvailabilityZone":"us-east-1e"
          }
       },
-      "Subnet2":{  
+      "Subnet2":{
          "Type":"AWS::EC2::Subnet",
-         "Properties":{  
-            "VpcId":{  
+         "Properties":{
+            "VpcId":{
                "Ref":"vpcId"
             },
             "CidrBlock":"172.31.112.0/20",
             "AvailabilityZone":"us-east-1b"
          }
       },
-      "DBSubnetGroup":{  
+      "DBSubnetGroup":{
          "Type":"AWS::RDS::DBSubnetGroup",
-         "Properties":{  
+         "Properties":{
             "DBSubnetGroupDescription":"description",
-            "SubnetIds":[  
-               {  
+            "SubnetIds":[
+               {
                   "Ref":"Subnet1"
                },
-               {  
+               {
                   "Ref":"Subnet2"
                }
             ]
          }
       },
-      "csye6225webapp":{  
+      "csye6225webapp":{
          "Type":"AWS::EC2::SecurityGroup",
-         "Properties":{  
+         "Properties":{
             "GroupDescription":"Enable HTTP access via port 80, SSH access via port 22, HTTPS access via port 443",
-            "VpcId":{  
+            "VpcId":{
                "Ref":"vpcId"
             },
-            "SecurityGroupIngress":[  
-               {  
+            "SecurityGroupIngress":[
+               {
                   "IpProtocol":"tcp",
                   "FromPort":"80",
                   "ToPort":"80",
                   "CidrIp":"0.0.0.0/0"
                },
-               {  
+               {
                   "IpProtocol":"tcp",
                   "FromPort":"22",
                   "ToPort":"22",
                   "CidrIp":"0.0.0.0/0"
                },
-               {  
+               {
                   "IpProtocol":"tcp",
                   "FromPort":"443",
                   "ToPort":"443",
@@ -461,18 +458,18 @@
             ]
          }
       },
-      "RDSSecurityGroup":{  
+      "RDSSecurityGroup":{
          "Type":"AWS::EC2::SecurityGroup",
-         "Properties":{  
+         "Properties":{
             "GroupDescription":"Open database for access",
             "GroupName":"csye6225rds",
-            "SecurityGroupIngress":[  
-               {  
+            "SecurityGroupIngress":[
+               {
                   "IpProtocol":"tcp",
                   "FromPort":"3306",
                   "ToPort":"3306",
-                  "SourceSecurityGroupId":{  
-                     "Fn::GetAtt":[  
+                  "SourceSecurityGroupId":{
+                     "Fn::GetAtt":[
                         "csye6225webapp",
                         "GroupId"
                      ]
@@ -481,84 +478,84 @@
             ]
          }
       },
-      "DynamoDBTable":{  
+      "DynamoDBTable":{
          "Type":"AWS::DynamoDB::Table",
-         "Properties":{  
-            "AttributeDefinitions":[  
-               {  
+         "Properties":{
+            "AttributeDefinitions":[
+               {
                   "AttributeName":"userId",
                   "AttributeType":"S"
                }
             ],
-            "KeySchema":[  
-               {  
+            "KeySchema":[
+               {
                   "AttributeName":"userId",
                   "KeyType":"HASH"
                }
             ],
-            "ProvisionedThroughput":{  
+            "ProvisionedThroughput":{
                "ReadCapacityUnits":"5",
                "WriteCapacityUnits":"5"
             },
             "TableName":"csye6225"
          }
       },
-      "S3Bucket":{  
+      "S3Bucket":{
          "Type":"AWS::S3::Bucket",
-         "Properties":{  
+         "Properties":{
             "BucketName":"csye6225-fall2017-muralia.me.csye6225.com"
          }
       },
-      "DBInstance":{  
+      "DBInstance":{
          "Type":"AWS::RDS::DBInstance",
-         "Properties":{  
+         "Properties":{
             "AllocatedStorage":"100",
             "DBName":"csye6225fall2017",
             "DBInstanceClass":"db.t2.medium",
             "DBInstanceIdentifier":"csye6225-fall2017",
-            "DBSubnetGroupName":{  
+            "DBSubnetGroupName":{
                "Ref":"DBSubnetGroup"
             },
-            "VPCSecurityGroups":[  
-               {  
-                  "Fn::GetAtt":[  
+            "VPCSecurityGroups":[
+               {
+                  "Fn::GetAtt":[
                      "RDSSecurityGroup",
                      "GroupId"
                   ]
                }
             ],
             "Engine":"MySQL",
-            "MasterUsername":{  
+            "MasterUsername":{
                "Ref":"rdsParamUsername"
             },
-            "MasterUserPassword":{  
+            "MasterUserPassword":{
                "Ref":"rdsParamPassword"
             },
             "MultiAZ":"FALSE",
             "PubliclyAccessible":"FALSE"
          }
       },
-      "MySNSTopic":{  
+      "MySNSTopic":{
          "Type":"AWS::SNS::Topic",
-         "Properties":{  
+         "Properties":{
             "DisplayName":"SampleDisplayTopic",
             "TopicName":"SampleTopic"
          }
       },
-      "Assgn8Role":{  
+      "Assgn8Role":{
          "Type":"AWS::IAM::Role",
-         "Properties":{  
-            "AssumeRolePolicyDocument":{  
+         "Properties":{
+            "AssumeRolePolicyDocument":{
                "Version":"2012-10-17",
-               "Statement":[  
-                  {  
+               "Statement":[
+                  {
                      "Effect":"Allow",
-                     "Principal":{  
-                        "Service":[  
+                     "Principal":{
+                        "Service":[
                            "lambda.amazonaws.com"
                         ]
                      },
-                     "Action":[  
+                     "Action":[
                         "sts:AssumeRole"
                      ]
                   }
@@ -567,33 +564,33 @@
             "Path":"/"
          }
       },
-      "AWSLambdaRolePolicy":{  
+      "AWSLambdaRolePolicy":{
          "Type":"AWS::IAM::Policy",
-         "Properties":{  
+         "Properties":{
             "PolicyName":"AWSLambdaBasicExecutionRolePolicy",
-            "PolicyDocument":{  
+            "PolicyDocument":{
                "Version":"2012-10-17",
-               "Statement":[  
-                  {  
+               "Statement":[
+                  {
                      "Effect":"Allow",
-                     "Action":[  
+                     "Action":[
                         "logs:CreateLogGroup",
                         "logs:CreateLogStream",
                         "logs:PutLogEvents"
                      ],
                      "Resource":"*"
                   },
-                  {  
+                  {
                      "Effect":"Allow",
-                     "Action":[  
+                     "Action":[
                         "ses:*"
                      ],
                      "Resource":"*"
                   }
                ]
             },
-            "Roles":[  
-               {  
+            "Roles":[
+               {
                   "Ref":"Assgn8Role"
                }
             ]
@@ -601,4 +598,3 @@
       }
    }
 }
-
