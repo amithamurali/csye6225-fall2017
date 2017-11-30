@@ -53,7 +53,10 @@
       "rdsParamPassword":{
          "Description":"database password",
          "Type":"String"
-      }
+      },
+	   "originalDomain":{
+ 			"Type":"String"
+ 		}
    },
    "Resources":{
       "RDSConnectPolicy":{
