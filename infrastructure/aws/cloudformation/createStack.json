@@ -373,7 +373,7 @@
 	"ALBListener": {
 		"Type": "AWS::ElasticLoadBalancingV2::Listener",
 		"Properties": {
-			"Certificates":[{"CertificateArn" :"arn:aws:acm:us-east-1:644761415555:certificate/14d7f790-6d0c-477c-983a-40f8d866e60a"}], 
+			"Certificates":[{"CertificateArn" :"arn:aws:acm:us-east-1:306856603029:certificate/323adb3e-f1a2-41ef-a7cb-2f39d9c513f3"}], 
 			"DefaultActions": [{
 					"Type": "forward",
 					"TargetGroupArn": {"Ref": "ALBTargetGroup"}
