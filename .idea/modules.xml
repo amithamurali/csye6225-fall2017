@@ -7,7 +7,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Assignment_8_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Assignment_8_test.iml" group="Assignment_8" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects-Assignment_8_main.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects-Assignment_8_main.iml" group="Assignment_8" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects-Assignment_8_test.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects-Assignment_8_test.iml" group="Assignment_8" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/csye6225-fall2017.iml" filepath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017.iml" />
       <module fileurl="file://$PROJECT_DIR$/csye6225-fall2017-1.iml" filepath="$PROJECT_DIR$/csye6225-fall2017-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/csye6225-fall2017_main.iml" filepath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017_main.iml" group="csye6225-fall2017" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/csye6225-fall2017_test.iml" filepath="$PROJECT_DIR$/.idea/modules/csye6225-fall2017_test.iml" group="csye6225-fall2017" />
     </modules>
   </component>
 </project>
